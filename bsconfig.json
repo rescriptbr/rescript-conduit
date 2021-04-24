@@ -14,5 +14,5 @@
     }
   ],
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react"]
+  "bs-dependencies": ["@rescript/react", "bs-css-emotion", "bs-css"]
 }
