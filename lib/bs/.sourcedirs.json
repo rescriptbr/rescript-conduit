@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" ] , "pkgs" : [ [ "bs-platform" , "/home/bvihjcep/Projects/rescript-conduit/node_modules/bs-platform" ] , [ "@rescript/react" , "/home/bvihjcep/Projects/rescript-conduit/node_modules/@rescript/react" ] ] , "generated" : [] }
