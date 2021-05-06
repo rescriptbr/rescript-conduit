@@ -2,9 +2,15 @@
 
 import * as React from "react";
 import * as Button from "./components/Button/Button.bs.js";
+import * as Render from "./lib/Render.bs.js";
+import * as GlobalStyles from "./lib/GlobalStyles.bs.js";
+
+GlobalStyles.includeStyle(undefined);
 
 function App(Props) {
-  return React.createElement("div", undefined, React.createElement(Button.make, {}));
+  return React.createElement("div", undefined, React.createElement(Button.make, {
+                  children: Render.s("Sign in")
+                }));
 }
 
 var make = App;
@@ -13,4 +19,4 @@ export {
   make ,
   
 }
-/* react Not a pure module */
+/*  Not a pure module */
