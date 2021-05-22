@@ -1,5 +1,9 @@
 open CssJs
 
+  style(.[
+  display(#flexx)
+])
+
 let button = (~block) =>
   style(.[
     background(Theme.Colors.blue->hex),
@@ -14,4 +18,5 @@ let button = (~block) =>
   ])
 
 @react.component
-let make = (~children, ~block=false) => <button className={button(~block)}> children </button>
+let make = (~children, ~block=false, ~onClick) =>
+  <button onClick className={button(~block)}> children </button>

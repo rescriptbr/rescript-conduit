@@ -6,18 +6,33 @@ import * as Render from "../../lib/Render.bs.js";
 import * as Helpers from "../../lib/Helpers.bs.js";
 import * as React$1 from "@storybook/react";
 
+function onClick($$event) {
+  console.log($$event);
+  
+}
+
 React$1.storiesOf("Button", Helpers.storybookModule).add("Basic usage", (function (param) {
+          var handleClick = function ($$event) {
+            console.log([
+                  "onClick => ",
+                  $$event
+                ]);
+            
+          };
           return React.createElement(Button.make, {
-                      children: Render.s("Click here")
+                      children: Render.s("Click here"),
+                      onClick: handleClick
                     });
-        })).add("Block prop", (function (param) {
+        })).add("Full width", (function (param) {
         return React.createElement(Button.make, {
                     children: Render.s("Click here"),
-                    block: true
+                    block: true,
+                    onClick: onClick
                   });
       }));
 
 export {
+  onClick ,
   
 }
 /*  Not a pure module */

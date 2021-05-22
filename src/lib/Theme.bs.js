@@ -4,7 +4,10 @@ import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 
 var Colors = {
   blue: "477BFF",
-  white: "fff"
+  white: "fff",
+  gray1: "A6AABE",
+  gray2: "AEB3C9",
+  black: "14103D"
 };
 
 var small = CssJs.px(6);

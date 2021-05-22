@@ -3,11 +3,11 @@
 import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 
 function includeStyle(param) {
-  return CssJs.$$global("html, body, #root", [
-              CssJs.padding(CssJs.zero),
-              CssJs.margin(CssJs.zero),
-              CssJs.fontSize(CssJs.px(10))
-            ]);
+  CssJs.$$global("html, body, #root", [
+        CssJs.padding(CssJs.zero),
+        CssJs.margin(CssJs.zero)
+      ]);
+  return CssJs.$$global("html", [CssJs.fontSize(CssJs.px(10))]);
 }
 
 export {

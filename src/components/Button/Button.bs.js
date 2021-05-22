@@ -21,9 +21,11 @@ function button(block) {
 function Button(Props) {
   var children = Props.children;
   var blockOpt = Props.block;
+  var onClick = Props.onClick;
   var block = blockOpt !== undefined ? blockOpt : false;
   return React.createElement("button", {
-              className: button(block)
+              className: button(block),
+              onClick: onClick
             }, children);
 }
 

@@ -1,6 +1,9 @@
 module Colors = {
   let blue = "477BFF"
   let white = "fff"
+  let gray1 = "A6AABE"
+  let gray2 = "AEB3C9"
+  let black = "14103D"
 }
 
 module Radius = {
