@@ -17,7 +17,7 @@ var label = CssJs.style([
 var input = CssJs.style([
       CssJs.height(CssJs.rem(5.6)),
       CssJs.width(CssJs.pct(100.0)),
-      CssJs.background(CssJs.hex("E2EAFF")),
+      CssJs.background(CssJs.hex(Theme.Colors.lightBlue1)),
       CssJs.fontFamily(Theme.fontFamily),
       CssJs.fontSize(CssJs.rem(2.0)),
       CssJs.borderStyle(CssJs.none),

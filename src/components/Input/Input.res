@@ -14,7 +14,7 @@ module Styles = {
   let input = style(.[
     height(5.6->rem),
     width(100.0->pct),
-    background(`E2EAFF`->hex),
+    background(Theme.Colors.lightBlue1->hex),
     fontFamily(Theme.fontFamily),
     fontSize(2.0->rem),
     borderStyle(none),

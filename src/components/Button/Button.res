@@ -1,9 +1,5 @@
 open CssJs
 
-  style(.[
-  display(#flexx)
-])
-
 let button = (~block) =>
   style(.[
     background(Theme.Colors.blue->hex),

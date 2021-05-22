@@ -7,7 +7,8 @@ var Colors = {
   white: "fff",
   gray1: "A6AABE",
   gray2: "AEB3C9",
-  black: "14103D"
+  black: "14103D",
+  lightBlue1: "E2EAFF"
 };
 
 var small = CssJs.px(6);
@@ -22,6 +23,12 @@ var Radius = {
   large: large
 };
 
+var xs = CssJs.rem(0.8);
+
+var Spacing = {
+  xs: xs
+};
+
 var fontFamily = {
   NAME: "custom",
   VAL: "'DM Sans', sans-serif"
@@ -30,6 +37,7 @@ var fontFamily = {
 export {
   Colors ,
   Radius ,
+  Spacing ,
   fontFamily ,
   
 }
