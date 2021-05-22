@@ -6,11 +6,15 @@ import * as React from "react";
 
 var card = CssJs.style([
       CssJs.background(CssJs.hex(Theme.Colors.lightBlue1)),
-      CssJs.borderRadius(Theme.Radius.small)
+      CssJs.borderRadius(Theme.Radius.medium),
+      CssJs.padding(CssJs.rem(3.2))
     ]);
 
 function Card(Props) {
-  return React.createElement("div", undefined);
+  var children = Props.children;
+  return React.createElement("div", {
+              className: card
+            }, children);
 }
 
 var make = Card;
