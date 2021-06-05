@@ -4,7 +4,7 @@ import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 import * as Theme from "../../lib/Theme.bs.js";
 import * as React from "react";
 import * as Render from "../../lib/Render.bs.js";
-import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 var label = CssJs.style([
       CssJs.fontSize(CssJs.rem(2.0)),

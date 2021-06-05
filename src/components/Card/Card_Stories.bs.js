@@ -12,7 +12,7 @@ React$1.storiesOf("Card", Helpers.storybookModule).add("Basic usage", (function 
                     children: null
                   }, React.createElement(Typography.make, {
                         variant: "title",
-                        level: "h1",
+                        level: 1,
                         children: Render.s("ReScript & React.js - Real World App")
                       }), React.createElement(Typography.make, {
                         children: Render.s("Texto")

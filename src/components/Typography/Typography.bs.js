@@ -36,9 +36,9 @@ function Typography(Props) {
   var levelOpt = Props.level;
   var children = Props.children;
   var variant = variantOpt !== undefined ? variantOpt : "text";
-  var level = levelOpt !== undefined ? levelOpt : "h1";
+  var level = levelOpt !== undefined ? levelOpt : 1;
   if (variant === "title") {
-    if (level === "h2") {
+    if (level === 2) {
       return React.createElement("h2", {
                   className: h2
                 }, children);
