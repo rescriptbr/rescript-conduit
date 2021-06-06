@@ -1,0 +1,11 @@
+FROM node:16.3.0-alpine3.13
+
+# Rescript needs python otherwise Ninja will fail to compile
+# https://github.com/rescript-lang/rescript-compiler/issues/3666
+RUN apk add --no-cache build-base && \
+    apk add --no-cache python3 py3-pip && \
+    ln -s /usr/bin/python3 /usr/bin/python
+
+WORKDIR /app
+
+CMD ["npm", "start"]
