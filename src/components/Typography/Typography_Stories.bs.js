@@ -13,13 +13,13 @@ React$1.storiesOf("Typography", Helpers.storybookModule).add("Basic usage", (fun
           })).add("Title 1", (function (param) {
           return React.createElement(Typography.make, {
                       variant: "title",
-                      level: "h1",
+                      level: 1,
                       children: Render.s("Title 1")
                     });
         })).add("Title 2", (function (param) {
         return React.createElement(Typography.make, {
                     variant: "title",
-                    level: "h2",
+                    level: 2,
                     children: Render.s("Title 2")
                   });
       }));

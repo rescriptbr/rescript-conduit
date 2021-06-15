@@ -2,13 +2,28 @@
 
 import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 
+var blueGradient = CssJs.linearGradient(CssJs.deg(180.0), {
+      hd: [
+        CssJs.pct(0.0),
+        CssJs.hex("477BFF")
+      ],
+      tl: {
+        hd: [
+          CssJs.pct(100.0),
+          CssJs.hex("306AFF")
+        ],
+        tl: /* [] */0
+      }
+    });
+
 var Colors = {
   blue: "477BFF",
   white: "fff",
   gray1: "A6AABE",
   gray2: "AEB3C9",
   black: "14103D",
-  lightBlue1: "E2EAFF"
+  lightBlue1: "E2EAFF",
+  blueGradient: blueGradient
 };
 
 var small = CssJs.px(6);
@@ -23,10 +38,12 @@ var Radius = {
   large: large
 };
 
-var xs = CssJs.rem(0.8);
+function make(value) {
+  return CssJs.rem(value * 0.6);
+}
 
 var Spacing = {
-  xs: xs
+  make: make
 };
 
 var fontFamily = {
@@ -41,4 +58,4 @@ export {
   fontFamily ,
   
 }
-/* small Not a pure module */
+/* blueGradient Not a pure module */

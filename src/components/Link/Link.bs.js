@@ -3,7 +3,7 @@
 import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 import * as Theme from "../../lib/Theme.bs.js";
 import * as React from "react";
-import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 var link = CssJs.style([
       CssJs.fontFamily(Theme.fontFamily),
