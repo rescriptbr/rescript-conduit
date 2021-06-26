@@ -8,7 +8,7 @@ var Colors = {
   gray2: "#AEB3C9",
   black: "#14103D",
   lightBlue1: "#E2EAFF",
-  blueGradient: "linear-gradient(180.0deg, 0 #477BFF, 100% #306AFF)"
+  blueGradient: " linear-gradient(180deg, #477BFF 0%, #306AFF 100%);"
 };
 
 var Radius = {
