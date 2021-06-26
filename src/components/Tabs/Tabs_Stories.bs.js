@@ -36,6 +36,15 @@ React$1.storiesOf("Tabs", Helpers.storybookModule).add("Basic usage", (function 
                       }), React.createElement("br", undefined), React.createElement("div", undefined, React.createElement(Tabs.Panel.make, {
                             active: tab === 0,
                             children: React.createElement(Card.make, {
+                                  children: React.createElement(Typography.make, {
+                                        variant: "title",
+                                        level: 2,
+                                        children: Render.s("The global feed...")
+                                      })
+                                })
+                          }), React.createElement(Tabs.Panel.make, {
+                            active: tab === 1,
+                            children: React.createElement(Card.make, {
                                   children: null
                                 }, React.createElement(Typography.make, {
                                       variant: "title",
@@ -44,15 +53,6 @@ React$1.storiesOf("Tabs", Helpers.storybookModule).add("Basic usage", (function 
                                     }), React.createElement(Typography.make, {
                                       children: Render.s("Texto")
                                     }))
-                          }), React.createElement(Tabs.Panel.make, {
-                            active: tab === 1,
-                            children: React.createElement(Card.make, {
-                                  children: React.createElement(Typography.make, {
-                                        variant: "title",
-                                        level: 2,
-                                        children: Render.s("The global feed...")
-                                      })
-                                })
                           })));
       }));
 
