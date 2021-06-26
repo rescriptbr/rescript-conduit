@@ -25,10 +25,7 @@ var Spacing = {
   make: make
 };
 
-var fontFamily = {
-  NAME: "custom",
-  VAL: "'DM Sans', sans-serif"
-};
+var fontFamily = "'DM Sans', sans-serif";
 
 export {
   Colors ,

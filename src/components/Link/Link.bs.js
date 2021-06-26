@@ -6,7 +6,6 @@ import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 var link = CssJs.style([
-      CssJs.fontFamily(Theme.fontFamily),
       CssJs.color(CssJs.hex(Theme.Colors.blue)),
       CssJs.fontSize(CssJs.rem(2.0)),
       CssJs.position(CssJs.relative),

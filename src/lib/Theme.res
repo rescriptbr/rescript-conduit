@@ -18,4 +18,4 @@ module Spacing = {
   let make = (value: int) => value->Js.Int.toFloat->(v => v *. 0.6)->Js.Float.toString ++ "rem"
 }
 
-let fontFamily = #custom("'DM Sans', sans-serif")
+let fontFamily = "'DM Sans', sans-serif"

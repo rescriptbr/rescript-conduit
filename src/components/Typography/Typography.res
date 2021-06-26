@@ -3,24 +3,30 @@ type level = [#1 | #2]
 
 module Styles = {
   open CssJs
+  open Emotion
 
-  let h1 = style(. [
+  let _h1 = style(. [
     fontSize(3.2->rem),
-    fontFamily(Theme.fontFamily),
+    // fontFamily(Theme.fontFamily),
     fontWeight(#bold),
     color(Theme.Colors.black->hex),
   ])
 
+  let h1 = css({
+    "fontSize": "3.2rem",
+    "fontFamily": Theme.fontFamily,
+  })
+
   let h2 = style(. [
     fontSize(2.8->rem),
-    fontFamily(Theme.fontFamily),
+    // fontFamily(Theme.fontFamily),
     fontWeight(#bold),
     color(Theme.Colors.black->hex),
   ])
 
   let text = style(. [
     fontSize(2.0->rem),
-    fontFamily(Theme.fontFamily),
+    // fontFamily(Theme.fontFamily),
     letterSpacing(-0.02->em),
     color(Theme.Colors.gray1->hex),
   ])

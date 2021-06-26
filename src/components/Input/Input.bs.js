@@ -9,7 +9,6 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 var label = CssJs.style([
       CssJs.fontSize(CssJs.rem(2.0)),
       CssJs.color(CssJs.hex(Theme.Colors.black)),
-      CssJs.fontFamily(Theme.fontFamily),
       CssJs.display(CssJs.block),
       CssJs.marginBottom(CssJs.rem(0.8))
     ]);
@@ -18,7 +17,6 @@ var input = CssJs.style([
       CssJs.height(CssJs.rem(5.6)),
       CssJs.width(CssJs.pct(100.0)),
       CssJs.background(CssJs.hex(Theme.Colors.lightBlue1)),
-      CssJs.fontFamily(Theme.fontFamily),
       CssJs.fontSize(CssJs.rem(2.0)),
       CssJs.borderStyle(CssJs.none),
       CssJs.padding2(CssJs.zero, CssJs.rem(2.4)),

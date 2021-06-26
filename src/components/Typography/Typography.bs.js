@@ -3,29 +3,33 @@
 import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 import * as Theme from "../../lib/Theme.bs.js";
 import * as React from "react";
+import * as Css from "@emotion/css";
 
-var h1 = CssJs.style([
+var _h1 = CssJs.style([
       CssJs.fontSize(CssJs.rem(3.2)),
-      CssJs.fontFamily(Theme.fontFamily),
       CssJs.fontWeight("bold"),
       CssJs.color(CssJs.hex(Theme.Colors.black))
     ]);
 
+var h1 = Css.css({
+      fontSize: "3.2rem",
+      fontFamily: Theme.fontFamily
+    });
+
 var h2 = CssJs.style([
       CssJs.fontSize(CssJs.rem(2.8)),
-      CssJs.fontFamily(Theme.fontFamily),
       CssJs.fontWeight("bold"),
       CssJs.color(CssJs.hex(Theme.Colors.black))
     ]);
 
 var text = CssJs.style([
       CssJs.fontSize(CssJs.rem(2.0)),
-      CssJs.fontFamily(Theme.fontFamily),
       CssJs.letterSpacing(CssJs.em(-0.02)),
       CssJs.color(CssJs.hex(Theme.Colors.gray1))
     ]);
 
 var Styles = {
+  _h1: _h1,
   h1: h1,
   h2: h2,
   text: text
@@ -61,4 +65,4 @@ export {
   make ,
   
 }
-/* h1 Not a pure module */
+/* _h1 Not a pure module */
