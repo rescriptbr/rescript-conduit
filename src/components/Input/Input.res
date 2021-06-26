@@ -1,30 +1,31 @@
 open Render
 
 module Styles = {
-  open CssJs
+  open Emotion
 
-  let label = style(. [
-    fontSize(2.0->rem),
-    color(Theme.Colors.black->hex),
-    // fontFamily(Theme.fontFamily),
-    display(block),
-    marginBottom(0.8->rem),
-  ])
+  let label = css({
+    "fontSize": "2.0rem",
+    "color": Theme.Colors.black,
+    "fontFamily": Theme.fontFamily,
+    "display": "block",
+    "marginBottom": "0.8rem",
+  })
 
-  let input = style(. [
-    height(5.6->rem),
-    width(100.0->pct),
-    background(Theme.Colors.lightBlue1->hex),
-    // fontFamily(Theme.fontFamily),
-    fontSize(2.0->rem),
-    borderStyle(none),
-    // borderRadius(Theme.Radius.small),
-    padding2(~v=zero, ~h=2.4->rem),
-    boxSizing(borderBox),
-    color(Theme.Colors.black->hex),
-    outlineStyle(none),
-    placeholder([color(Theme.Colors.gray2->hex)]),
-  ])
+  let input = css({
+    "height": "5.6rem",
+    "width": "100.0pct",
+    "background": Theme.Colors.lightBlue1,
+    "font": `2.0rem ${Theme.fontFamily}`,
+    "borderStyle": "none",
+    "borderRadius": Theme.Radius.small,
+    "padding": "0 2.4rem",
+    "boxSizing": "border-box",
+    "color": Theme.Colors.black,
+    "outlineStyle": "none",
+    "&::placeholder": {
+      "color": Theme.Colors.gray2,
+    },
+  })
 }
 @react.component
 let make = (~placeholder=?, ~name=?, ~onChange=?, ~type_=?, ~label=?) => {
