@@ -2,7 +2,7 @@ let link = {
   open CssJs
 
   style(.[
-    fontFamily(Theme.fontFamily),
+    // fontFamily(Theme.fontFamily),
     color(Theme.Colors.blue->hex),
     fontSize(2.0->rem),
     position(relative),
