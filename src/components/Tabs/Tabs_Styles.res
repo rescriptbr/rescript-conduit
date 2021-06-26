@@ -9,9 +9,9 @@ let tab = (~active) =>
       "> button",
       [
         transition(~duration=200, "color"),
-        padding2(~v=Theme.Spacing.make(1), ~h=Theme.Spacing.make(2)),
-        borderRadius(Theme.Radius.small),
-        background(active ? Theme.Colors.blueGradient : transparent),
+        // padding2(~v=Theme.Spacing.make(1), ~h=Theme.Spacing.make(2)),
+        // borderRadius(Theme.Radius.small),
+        // background(active ? Theme.Colors.blueGradient : transparent),
         color(active ? Theme.Colors.white->hex : Theme.Colors.gray1->hex),
         borderStyle(none),
         fontFamily(Theme.fontFamily),

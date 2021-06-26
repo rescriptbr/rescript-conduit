@@ -21,7 +21,6 @@ var input = CssJs.style([
       CssJs.fontFamily(Theme.fontFamily),
       CssJs.fontSize(CssJs.rem(2.0)),
       CssJs.borderStyle(CssJs.none),
-      CssJs.borderRadius(Theme.Radius.small),
       CssJs.padding2(CssJs.zero, CssJs.rem(2.4)),
       CssJs.boxSizing(CssJs.borderBox),
       CssJs.color(CssJs.hex(Theme.Colors.black)),

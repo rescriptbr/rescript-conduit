@@ -2,7 +2,7 @@ open CssJs
 
 let card = style(. [
   background(Theme.Colors.lightBlue1->hex),
-  borderRadius(Theme.Radius.medium),
+  // borderRadius(Theme.Radius.medium),
   padding(3.2->rem),
 ])
 

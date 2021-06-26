@@ -3,7 +3,7 @@ open Render
 module Styles = {
   open CssJs
 
-  let label = style(.[
+  let label = style(. [
     fontSize(2.0->rem),
     color(Theme.Colors.black->hex),
     fontFamily(Theme.fontFamily),
@@ -11,14 +11,14 @@ module Styles = {
     marginBottom(0.8->rem),
   ])
 
-  let input = style(.[
+  let input = style(. [
     height(5.6->rem),
     width(100.0->pct),
     background(Theme.Colors.lightBlue1->hex),
     fontFamily(Theme.fontFamily),
     fontSize(2.0->rem),
     borderStyle(none),
-    borderRadius(Theme.Radius.small),
+    // borderRadius(Theme.Radius.small),
     padding2(~v=zero, ~h=2.4->rem),
     boxSizing(borderBox),
     color(Theme.Colors.black->hex),

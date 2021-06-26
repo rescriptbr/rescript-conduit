@@ -6,7 +6,6 @@ import * as React from "react";
 
 var card = CssJs.style([
       CssJs.background(CssJs.hex(Theme.Colors.lightBlue1)),
-      CssJs.borderRadius(Theme.Radius.medium),
       CssJs.padding(CssJs.rem(3.2))
     ]);
 

@@ -1,17 +1,15 @@
-open CssJs
-
 let button = (~block) =>
-  style(.[
-    background(Theme.Colors.blue->hex),
-    borderStyle(none),
-    color(Theme.Colors.white->hex),
-    height(5.5->rem),
-    minWidth(block ? 100.0->pct : 20.0->rem),
-    borderRadius(Theme.Radius.small),
-    cursor(pointer),
-    fontFamily(Theme.fontFamily),
-    fontSize(2.0->rem),
-  ])
+  Emotion.css({
+    "background": Theme.Colors.blue,
+    "border": 0,
+    "color": Theme.Colors.white,
+    "minWidth": block ? "100%" : "20rem",
+    "height": "5.5rem",
+    "borderRadius": Theme.Radius.small,
+    "cursor": "pointer",
+    "fontFamily": Theme.fontFamily,
+    "fontSize": "2.0rem",
+  })
 
 @react.component
 let make = (~children, ~block=false, ~onClick) =>

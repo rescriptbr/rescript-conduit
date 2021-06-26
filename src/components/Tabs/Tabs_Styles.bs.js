@@ -14,9 +14,6 @@ function tab(active) {
               CssJs.listStyleType(CssJs.none),
               CssJs.selector("> button", [
                     CssJs.transition(200, undefined, undefined, "color"),
-                    CssJs.padding2(Theme.Spacing.make(1), Theme.Spacing.make(2)),
-                    CssJs.borderRadius(Theme.Radius.small),
-                    CssJs.background(active ? Theme.Colors.blueGradient : CssJs.transparent),
                     CssJs.color(active ? CssJs.hex(Theme.Colors.white) : CssJs.hex(Theme.Colors.gray1)),
                     CssJs.borderStyle(CssJs.none),
                     CssJs.fontFamily(Theme.fontFamily),
