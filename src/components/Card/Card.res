@@ -1,10 +1,10 @@
-open CssJs
+open Emotion
 
-let card = style(. [
-  background(Theme.Colors.lightBlue1->hex),
-  // borderRadius(Theme.Radius.medium),
-  padding(3.2->rem),
-])
+let card = css({
+  "background": Theme.Colors.lightBlue1,
+  "borderRadius": Theme.Radius.medium,
+  "padding": "3.2rem",
+})
 
 @react.component
 let make = (~children) => {
