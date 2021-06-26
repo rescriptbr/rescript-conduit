@@ -2,14 +2,34 @@
 
 import * as CssJs from "bs-css-emotion/src/CssJs.bs.js";
 import * as Theme from "../../lib/Theme.bs.js";
+import * as Css from "@emotion/css";
 
-var tabs = CssJs.style([
+var tabs = Css.css({
+      display: "flex",
+      margin: 0,
+      padding: 0
+    });
+
+var tabs_ = CssJs.style([
       CssJs.display("flex"),
       CssJs.margin(CssJs.zero),
       CssJs.padding(CssJs.zero)
     ]);
 
 function tab(active) {
+  return Css.css({
+              listStyle: "none",
+              "> button": {
+                transition: "200ms color",
+                padding: Theme.Spacing.make(1) + " " + Theme.Spacing.make(2),
+                borderRadius: Theme.Radius.small,
+                color: active ? Theme.Colors.white : Theme.Colors.gray1,
+                border: "none"
+              }
+            });
+}
+
+function tab_(active) {
   return CssJs.style([
               CssJs.listStyleType(CssJs.none),
               CssJs.selector("> button", [
@@ -28,7 +48,9 @@ function tab(active) {
 
 export {
   tabs ,
+  tabs_ ,
   tab ,
+  tab_ ,
   
 }
 /* tabs Not a pure module */
