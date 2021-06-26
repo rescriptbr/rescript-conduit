@@ -33,7 +33,7 @@ let tab_ = (~active) =>
         // background(active ? Theme.Colors.blueGradient : transparent),
         color(active ? Theme.Colors.white->hex : Theme.Colors.gray1->hex),
         borderStyle(none),
-        fontFamily(Theme.fontFamily),
+        // fontFamily(Theme.fontFamily),
         cursor(pointer),
       ],
     ),

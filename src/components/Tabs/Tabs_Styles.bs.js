@@ -36,7 +36,6 @@ function tab_(active) {
                     CssJs.transition(200, undefined, undefined, "color"),
                     CssJs.color(active ? CssJs.hex(Theme.Colors.white) : CssJs.hex(Theme.Colors.gray1)),
                     CssJs.borderStyle(CssJs.none),
-                    CssJs.fontFamily(Theme.fontFamily),
                     CssJs.cursor(CssJs.pointer)
                   ]),
               CssJs.hover([CssJs.selector("> button", [
