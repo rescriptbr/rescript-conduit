@@ -4,7 +4,7 @@ import * as Link from "./components/Link/Link.bs.js";
 import * as React from "react";
 import * as GlobalStyles from "./lib/GlobalStyles.bs.js";
 
-GlobalStyles.includeStyle(undefined);
+GlobalStyles.includeStyles(undefined);
 
 function App(Props) {
   return React.createElement("div", undefined, React.createElement(Link.make, {

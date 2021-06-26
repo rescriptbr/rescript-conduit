@@ -1,4 +1,4 @@
-GlobalStyles.includeStyle()
+GlobalStyles.includeStyles()
 
 @react.component
 let make = () => {

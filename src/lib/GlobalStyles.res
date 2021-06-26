@@ -1,6 +1,15 @@
-open CssJs
+let includeStyles = () =>
+  Emotion.injectGlobal(`
+  html, body, #root {
+    padding: 0;
+    margin: 0;
+  }
 
-let includeStyle = () => {
-  global(. "html, body, #root", [padding(zero), margin(zero)])
-  global(. "html", [fontSize(10->px)])
-}
+  html {
+    font-size: 10px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+`)
