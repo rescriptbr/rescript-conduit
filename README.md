@@ -68,3 +68,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Development with docker
+
+Install dependencies, this will create node_modules folder
+
+`$ docker-compose run --rm web yarn install`
+
+For some reason, the node_modules folder has root as owner, I needed to change the owner
+
+`$ sudo chown -R ${USER}: node_modules/`
+
+Now you're ready to start the development
+
+Build rescript files
+
+`$ docker-compose run --rm web yarn run res:watch`
+
+Use storybook to develop your components 
+
+`$ docker-compose up` (or `-d` flag to run in background)
+`$ docker-compose exec web yarn run res:watch`
+`$ docker-compose exec web yarn run storybook`
