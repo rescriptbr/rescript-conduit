@@ -17,7 +17,7 @@ var link = Css.css({
       padding: "2px",
       "&:after": {
         zIndex: -1,
-        content: " ",
+        content: "\" \"",
         height: "2px",
         width: "100%",
         background: Theme.Colors.blue,

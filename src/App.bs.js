@@ -7,7 +7,9 @@ import * as GlobalStyles from "./lib/GlobalStyles.bs.js";
 GlobalStyles.includeStyles(undefined);
 
 function App(Props) {
-  return React.createElement("div", undefined, React.createElement(Link.make, {
+  return React.createElement("div", {
+              className: "py-4 w-10 mx-auto"
+            }, React.createElement(Link.make, {
                   children: "Text"
                 }));
 }
