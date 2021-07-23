@@ -2,6 +2,7 @@
 
 import * as Theme from "../../lib/Theme.bs.js";
 import * as React from "react";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Css from "@emotion/css";
 
 function button(block) {
@@ -20,13 +21,16 @@ function button(block) {
 
 function Button(Props) {
   var children = Props.children;
-  var blockOpt = Props.block;
+  var classNameOpt = Props.className;
   var onClick = Props.onClick;
-  var block = blockOpt !== undefined ? blockOpt : false;
-  return React.createElement("button", {
-              className: button(block),
-              onClick: onClick
-            }, children);
+  var className = classNameOpt !== undefined ? classNameOpt : "";
+  var tmp = {
+    className: "bg-blue " + className
+  };
+  if (onClick !== undefined) {
+    tmp.onClick = Caml_option.valFromOption(onClick);
+  }
+  return React.createElement("button", tmp, children);
 }
 
 var make = Button;

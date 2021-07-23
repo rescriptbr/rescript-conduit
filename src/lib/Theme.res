@@ -5,7 +5,7 @@ module Colors = {
   let gray2 = "#AEB3C9"
   let black = "#14103D"
   let lightBlue1 = "#E2EAFF"
-  let blueGradient = " linear-gradient(180deg, #477BFF 0%, #306AFF 100%);"
+  let blueGradient = "linear-gradient(180deg, #477BFF 0%, #306AFF 100%);"
 }
 
 module Radius = {
