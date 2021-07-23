@@ -12,5 +12,5 @@ let button = (~block) =>
   })
 
 @react.component
-let make = (~children, ~className="", ~onClick=?) =>
-  <button ?onClick className={`bg-blue ${className}`}> children </button>
+let make = (~children, ~className="", ~block=false, ~onClick=?) =>
+  <button ?onClick className={`${className} ${button(~block)}`}> children </button>

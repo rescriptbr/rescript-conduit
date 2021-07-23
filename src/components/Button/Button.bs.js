@@ -22,10 +22,12 @@ function button(block) {
 function Button(Props) {
   var children = Props.children;
   var classNameOpt = Props.className;
+  var blockOpt = Props.block;
   var onClick = Props.onClick;
   var className = classNameOpt !== undefined ? classNameOpt : "";
+  var block = blockOpt !== undefined ? blockOpt : false;
   var tmp = {
-    className: "bg-blue " + className
+    className: className + " " + button(block)
   };
   if (onClick !== undefined) {
     tmp.onClick = Caml_option.valFromOption(onClick);
