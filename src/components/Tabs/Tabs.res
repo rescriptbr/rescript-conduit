@@ -1,6 +1,6 @@
 open Render
+open TabsStyles
 
-module Styles = Tabs_Styles
 module Array = Belt.Array
 
 type tab<'tabId> = {
@@ -13,9 +13,7 @@ type tabs<'tabId> = array<tab<'tabId>>
 module Tab = {
   @react.component
   let make = (~label, ~onChange, ~id, ~active) =>
-    <li className={Styles.tab(~active)}>
-      <button onClick={_ => onChange(id)}> {label->s} </button>
-    </li>
+    <li className={tab(~active)}> <button onClick={_ => onChange(id)}> {label->s} </button> </li>
 }
 
 module Panel = {
@@ -26,9 +24,9 @@ module Panel = {
 }
 
 @react.component
-let make = (~tabs, ~onChange, ~current) => {
-  <ul className=Styles.tabs>
-    {tabs->map((tab, key) => {
+let make = (~tabs as tabsList, ~onChange, ~current) => {
+  <ul className=tabs>
+    {tabsList->map((tab, key) => {
       <Tab key label=tab.label id=tab.id onChange active={current == tab.id} />
     })}
   </ul>

@@ -4,7 +4,7 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Render from "../../lib/helpers/Render.bs.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
-import * as Tabs_Styles from "./Tabs_Styles.bs.js";
+import * as TabsStyles from "./TabsStyles.bs.js";
 
 function Tabs$Tab(Props) {
   var label = Props.label;
@@ -12,7 +12,7 @@ function Tabs$Tab(Props) {
   var id = Props.id;
   var active = Props.active;
   return React.createElement("li", {
-              className: Tabs_Styles.tab(active)
+              className: TabsStyles.tab(active)
             }, React.createElement("button", {
                   onClick: (function (param) {
                       return Curry._1(onChange, id);
@@ -39,12 +39,12 @@ var Panel = {
 };
 
 function Tabs(Props) {
-  var tabs = Props.tabs;
+  var tabsList = Props.tabs;
   var onChange = Props.onChange;
   var current = Props.current;
   return React.createElement("ul", {
-              className: Tabs_Styles.tabs
-            }, Render.map(tabs, (function (tab, key) {
+              className: TabsStyles.tabs
+            }, Render.map(tabsList, (function (tab, key) {
                     return React.createElement(Tabs$Tab, {
                                 label: tab.label,
                                 onChange: onChange,
@@ -55,14 +55,11 @@ function Tabs(Props) {
                   })));
 }
 
-var Styles;
-
 var $$Array;
 
 var make = Tabs;
 
 export {
-  Styles ,
   $$Array ,
   Tab ,
   Panel ,
