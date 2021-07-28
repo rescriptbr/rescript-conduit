@@ -59,6 +59,13 @@ module Raw = {
     ${styles}
   }
   `
+
+  let xxs = lessThan(_, #xs)
+  let xs = lessThan(_, #sm)
+  let sm = lessThan(_, #md)
+  let md = lessThan(_, #lg)
+  let lg = lessThan(_, #xl)
+  let xl = greaterThan(_, #xl)
 }
 
 let createMatchMedia = device => `(min-width: ${device->valueOfDevice})`

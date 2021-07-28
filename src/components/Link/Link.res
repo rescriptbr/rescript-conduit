@@ -17,7 +17,7 @@ let link = css({
     "width": "100%",
     "background": Theme.Colors.blue,
     "position": "absolute",
-    "bottom": "-3px",
+    "bottom": "-1px",
     "left": 0,
     "transition": "100ms height",
   },

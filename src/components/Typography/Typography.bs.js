@@ -8,28 +8,28 @@ var h1 = Css.css({
       fontSize: "3.2rem",
       fontFamily: Theme.fontFamily,
       fontWeight: "bold",
-      color: Theme.Colors.black
+      color: Theme.Colors.black,
+      margin: 0,
+      marginBottom: Theme.Spacing.make(3)
     });
 
 var h2 = Css.css({
       fontSize: "2.8rem",
       fontFamily: Theme.fontFamily,
       fontWeight: "bold",
-      color: Theme.Colors.black
+      color: Theme.Colors.black,
+      margin: 0,
+      marginBottom: Theme.Spacing.make(3)
     });
 
 var text = Css.css({
       fontSize: "2.0rem",
       fontFamily: Theme.fontFamily,
       letterSpacing: "-0.02em",
-      color: Theme.Colors.gray1
+      color: Theme.Colors.gray1,
+      margin: 0,
+      marginBottom: Theme.Spacing.make(2)
     });
-
-var Styles = {
-  h1: h1,
-  h2: h2,
-  text: text
-};
 
 function Typography(Props) {
   var variantOpt = Props.variant;
@@ -57,7 +57,9 @@ function Typography(Props) {
 var make = Typography;
 
 export {
-  Styles ,
+  h1 ,
+  h2 ,
+  text ,
   make ,
   
 }

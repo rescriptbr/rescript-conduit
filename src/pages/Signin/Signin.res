@@ -7,15 +7,19 @@ let wrapper = Emotion.Raw.css(
 `,
 )
 
-let formWrapper = Emotion.Raw.css(`
-  max-width: 40.0rem;
-`)
+let formWrapper = Emotion.Raw.css(
+  `
+  max-width: 100%;
+  `->Devices.Raw.md(`
+    max-width: 40.0rem;
+  `),
+)
 
 @react.component
 let make = () => {
-  <Flex>
-    <Box p={6->all} className=wrapper xxs=#6> {`Box`->s} </Box>
-    <Box display={#flex->all} justifyContent={#center->all} alignItems={#center->all} xxs=#6>
+  <Flex height={100.0->#pct->all}>
+    <Box display=[xxs(#none), md(#block)] p={6->all} className=wrapper xxs=#6> {`Box`->s} </Box>
+    <Box display={#flex->all} justifyContent={#center->all} alignItems={#center->all} xxs=#12 md=#6>
       <Box display={#flex->all} flexDirection={#column->all} className=formWrapper>
         <Typography variant=#title level=#1> {`Sign in`->s} </Typography>
         <Typography variant=#text level=#1>
@@ -26,7 +30,7 @@ let make = () => {
         <Button block=true> {`Sign in`->s} </Button>
         <Box mt={6->all}>
           <Typography variant=#text>
-            {`Skip sign-in for now and`->s} <Link> {` start reading`->s} </Link>
+            {`Skip sign-in for now and `->s} <Link> {`start reading`->s} </Link>
           </Typography>
         </Box>
       </Box>

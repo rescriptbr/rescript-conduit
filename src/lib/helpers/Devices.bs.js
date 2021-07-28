@@ -81,9 +81,51 @@ function lessThan$1(current, device, styles) {
   return "\n  " + current + "\n  @media (max-width: " + valueOfDevice(device) + ") {\n    " + styles + "\n  }\n  ";
 }
 
+function xxs$1(__x) {
+  return function (param) {
+    return lessThan$1(__x, "xs", param);
+  };
+}
+
+function xs$1(__x) {
+  return function (param) {
+    return lessThan$1(__x, "sm", param);
+  };
+}
+
+function sm$1(__x) {
+  return function (param) {
+    return lessThan$1(__x, "md", param);
+  };
+}
+
+function md$1(__x) {
+  return function (param) {
+    return lessThan$1(__x, "lg", param);
+  };
+}
+
+function lg$1(__x) {
+  return function (param) {
+    return lessThan$1(__x, "xl", param);
+  };
+}
+
+function xl$1(__x) {
+  return function (param) {
+    return greaterThan$1(__x, "xl", param);
+  };
+}
+
 var Raw = {
   greaterThan: greaterThan$1,
-  lessThan: lessThan$1
+  lessThan: lessThan$1,
+  xxs: xxs$1,
+  xs: xs$1,
+  sm: sm$1,
+  md: md$1,
+  lg: lg$1,
+  xl: xl$1
 };
 
 function createMatchMedia(device) {

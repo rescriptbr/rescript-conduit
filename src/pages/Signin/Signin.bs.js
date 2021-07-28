@@ -10,15 +10,23 @@ import * as Button from "../../components/Button/Button.bs.js";
 import * as Render from "../../lib/helpers/Render.bs.js";
 import * as UIBase from "../../lib/ui/UIBase.bs.js";
 import * as UIFlex from "../../lib/ui/UIFlex.bs.js";
+import * as Devices from "../../lib/helpers/Devices.bs.js";
 import * as Typography from "../../components/Typography/Typography.bs.js";
 import * as Css from "@emotion/css";
 
 var wrapper = Css.css("\n  background: " + Theme.Colors.blue + ";\n");
 
-var formWrapper = Css.css("\n  max-width: 40.0rem;\n");
+var formWrapper = Css.css(Devices.Raw.md("\n  max-width: 100%;\n  ")("\n    max-width: 40.0rem;\n  "));
 
 function Signin(Props) {
-  return React.createElement(UIFlex.make, Curry._3(UIFlex.makeProps(undefined)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, null), undefined, undefined, undefined), React.createElement(UIBase.make, {
+  return React.createElement(UIFlex.make, Curry._3(UIFlex.makeProps(undefined)(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, UI.all({
+                          NAME: "pct",
+                          VAL: 100.0
+                        }), undefined, undefined, undefined, undefined, undefined, null), undefined, undefined, undefined), React.createElement(UIBase.make, {
+                  display: [
+                    UI.xxs("none"),
+                    UI.md("block")
+                  ],
                   p: UI.all(6),
                   xxs: 6,
                   children: Render.s("Box"),
@@ -27,7 +35,8 @@ function Signin(Props) {
                   display: UI.all("flex"),
                   justifyContent: UI.all("center"),
                   alignItems: UI.all("center"),
-                  xxs: 6,
+                  xxs: 12,
+                  md: 6,
                   children: React.createElement(UIBase.make, {
                         display: UI.all("flex"),
                         flexDirection: UI.all("column"),
@@ -62,8 +71,8 @@ function Signin(Props) {
                             children: React.createElement(Typography.make, {
                                   variant: "text",
                                   children: null
-                                }, Render.s("Skip sign-in for now and"), React.createElement(Link.make, {
-                                      children: Render.s(" start reading")
+                                }, Render.s("Skip sign-in for now and "), React.createElement(Link.make, {
+                                      children: Render.s("start reading")
                                     }))
                           }))
                 }));
