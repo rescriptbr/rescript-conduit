@@ -4,8 +4,8 @@ import * as Card from "../Card/Card.bs.js";
 import * as Tabs from "./Tabs.bs.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as Render from "../../lib/Render.bs.js";
-import * as Helpers from "../../lib/Helpers.bs.js";
+import * as Render from "../../lib/helpers/Render.bs.js";
+import * as Helpers from "../../lib/helpers/Helpers.bs.js";
 import * as Typography from "../Typography/Typography.bs.js";
 import * as React$1 from "@storybook/react";
 

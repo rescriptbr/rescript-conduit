@@ -3,6 +3,10 @@ open Render
 module Styles = {
   open Emotion
 
+  let wrapper = css({
+    "width": "100%",
+  })
+
   let label = css({
     "fontSize": "2.0rem",
     "color": Theme.Colors.black,
@@ -13,7 +17,7 @@ module Styles = {
 
   let input = css({
     "height": "5.6rem",
-    "width": "100.0pct",
+    "width": "100%",
     "background": Theme.Colors.lightBlue1,
     "font": `2.0rem ${Theme.fontFamily}`,
     "borderStyle": "none",
@@ -29,7 +33,7 @@ module Styles = {
 }
 @react.component
 let make = (~placeholder=?, ~name=?, ~onChange=?, ~type_=?, ~label=?) => {
-  <div>
+  <div className={Styles.wrapper}>
     {switch label {
     | Some(label) => <label className={Styles.label}> {label->s} </label>
     | None => React.null

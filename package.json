@@ -24,9 +24,9 @@
     "vite:dev": "vite",
     "vite:build": "vite build",
     "vite:serve": "vite preview",
-    "res:watch": "rescript build -w",
-    "res:build": "rescript build -with-deps",
-    "res:clean": "rescript clean",
+    "rescript:watch": "rescript build -w",
+    "rescript:build": "rescript build -with-deps",
+    "rescript:clean": "rescript clean",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },

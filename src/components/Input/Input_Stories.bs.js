@@ -2,7 +2,7 @@
 
 import * as Input from "./Input.bs.js";
 import * as React from "react";
-import * as Helpers from "../../lib/Helpers.bs.js";
+import * as Helpers from "../../lib/helpers/Helpers.bs.js";
 import * as React$1 from "@storybook/react";
 
 React$1.storiesOf("Input", Helpers.storybookModule).add("Basic usage", (function (param) {

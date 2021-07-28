@@ -83,3 +83,32 @@ type display = values<[#none | #block | #flex]>
 type spacing = values<int>
 
 let stringifySpacing = Theme.Spacing.make
+
+// Sizing
+type size = values<
+  [
+    | #pct(float)
+    | #px(float)
+    | #rem(float)
+    | #em(float)
+  ],
+>
+
+let stringifySize = size =>
+  switch size {
+  | #pct(value) => `${value->Js.Float.toString}%`
+  | #px(value) => `${value->Js.Float.toString}px`
+  | #rem(value) => `${value->Js.Float.toString}rem`
+  | #em(value) => `${value->Js.Float.toString}rem`
+  }
+
+// Postion
+type position = values<
+  [
+    | #static
+    | #relative
+    | #absolute
+    | #fixed
+    | #sticky
+  ],
+>

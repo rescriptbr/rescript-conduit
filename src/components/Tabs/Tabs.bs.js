@@ -2,7 +2,7 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as Render from "../../lib/Render.bs.js";
+import * as Render from "../../lib/helpers/Render.bs.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Tabs_Styles from "./Tabs_Styles.bs.js";
 

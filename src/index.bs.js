@@ -4,9 +4,6 @@ import * as App from "./App.bs.js";
 import * as React from "react";
 import * as ReactDom from "react-dom";
 
-import './index.css'
-;
-
 var element = document.querySelector("#root");
 
 if (element == null) {
@@ -18,4 +15,4 @@ if (element == null) {
 export {
   
 }
-/*  Not a pure module */
+/* element Not a pure module */

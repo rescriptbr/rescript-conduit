@@ -1,4 +1,4 @@
-open ResponsiveTypes
+open UIResponsiveProps
 
 module Option = Belt.Option
 
@@ -66,6 +66,15 @@ let make = (
   ~mr: option<spacing>=?,
   // Texts
   ~textAlign: option<textAlign>=?,
+  // Sizing
+  ~width: option<size>=?,
+  ~height: option<size>=?,
+  // Placement
+  ~position: option<position>=?,
+  ~top: option<size>=?,
+  ~bottom: option<size>=?,
+  ~left: option<size>=?,
+  ~right: option<size>=?,
   (),
 ) => {
   let values = [
@@ -95,6 +104,16 @@ let make = (
     ("margin-right", mr->toRecord(stringifySpacing)),
     //Texts
     ("text-align", textAlign->toRecord(stringify)),
+    // Sizing
+    ("width", width->toRecord(stringifySize)),
+    ("height", height->toRecord(stringifySize)),
+    // Position
+    ("position", position->toRecord(stringify)),
+    // Placement
+    ("top", top->toRecord(stringifySize)),
+    ("bottom", bottom->toRecord(stringifySize)),
+    ("left", left->toRecord(stringifySize)),
+    ("right", right->toRecord(stringifySize)),
   ]
 
   let xxsStyles = createStyles(values, #xxs)
