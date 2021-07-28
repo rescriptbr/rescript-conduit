@@ -1,4 +1,4 @@
-open! UICore
+open UICore
 
 let toFloat = value =>
   switch value {
