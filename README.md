@@ -22,25 +22,25 @@ This project is an implementation of the **"Real World App"** built with ReScrip
 
 ## Up & Running 🚀
 
-Install all dependencies:
+1. Install all dependencies:
 
 ```sh
 $ yarn
 ```
 
-Run the ReScript compiler to build the project:
+2. Run the ReScript compiler to build the project:
 
 ```sh
 $ yarn rescript:build
 ```
 
-Now, run the ReScript compiler with watch mode enabled:
+3. Now, run the ReScript compiler with watch mode enabled:
 
 ```$
 $ yarn rescript:watch
 ```
 
-Starting Vite dev server:
+4. Run the Vite development server:
 ```$
 $ yarn vite
 ```
