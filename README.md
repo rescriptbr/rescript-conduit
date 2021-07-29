@@ -55,7 +55,7 @@ $ docker-compose up -d
 
 ## Scripts ▶️
 
-| Script            | Descrição                                                                      |
+| Script            | Description                                                                    |
 | ----------------- | ------------------------------------------------------------------------------ |
 | `rescript:watch`  | Run the compiler with the watch mode enabled                                   |
 | `rescript:build`  | Run the compiler with the build mode enabled                                   |
