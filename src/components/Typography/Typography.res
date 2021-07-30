@@ -1,38 +1,44 @@
-type variant = [#title | #text]
-type level = [#1 | #2]
+open TypographyStyles
 
-let h1 = Emotion.css({
-  "fontSize": "3.2rem",
-  "fontFamily": Theme.fontFamily,
-  "fontWeight": "bold",
-  "color": Theme.Colors.black,
-  "margin": 0,
-  "marginBottom": Theme.Spacing.make(3),
-})
+type level = [#1 | #2 | #3 | #4 | #5 | #6]
+type body = [#1 | #2 | #3]
+type textTags = [#p | #span | #div]
 
-let h2 = Emotion.css({
-  "fontSize": "2.8rem",
-  "fontFamily": Theme.fontFamily,
-  "fontWeight": "bold",
-  "color": Theme.Colors.black,
-  "margin": 0,
-  "marginBottom": Theme.Spacing.make(3),
-})
+module Title = {
+  @react.component
+  let make = (
+    ~level: level=#1,
+    ~align=#left,
+    ~color=Theme.Colors.black,
+    ~noMargin=false,
+    ~className as customClass="",
+    ~children,
+  ) => {
+    let className = React.useMemo4(() => {
+      let className = title(~level, ~align, ~color, ~noMargin)
+      `${className} ${customClass}`
+    }, (level, align, color, noMargin))
 
-let text = Emotion.css({
-  "fontSize": "2.0rem",
-  "fontFamily": Theme.fontFamily,
-  "letterSpacing": "-0.02em",
-  "color": Theme.Colors.gray1,
-  "margin": 0,
-  "marginBottom": Theme.Spacing.make(2),
-})
+    switch level {
+    | #1 => <h1 className> children </h1>
+    | #2 => <h2 className> children </h2>
+    | #3 => <h3 className> children </h3>
+    | #4 => <h4 className> children </h4>
+    | #5 => <h5 className> children </h5>
+    | #6 => <h6 className> children </h6>
+    }
+  }
+}
 
-@react.component
-let make = (~variant=#text, ~level: level=#1, ~children) => {
-  switch (variant, level) {
-  | (#title, #1) => <h1 className={h1}> children </h1>
-  | (#title, #2) => <h2 className={h2}> children </h2>
-  | (#text, _) => <p className={text}> children </p>
+module Paragraph = {
+  @react.component
+  let make = (
+    ~level: body=#1,
+    ~noMargin=false,
+    ~align=#left,
+    ~color: string=Theme.Colors.gray1,
+    ~children,
+  ) => {
+    <p className={paragraph(~level, ~align, ~color, ~noMargin)}> children </p>
   }
 }

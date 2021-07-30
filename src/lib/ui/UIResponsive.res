@@ -124,10 +124,10 @@ let make = (
     // Sizing
     ("width", width->toRecord(stringifySize)),
     ("height", height->toRecord(stringifySize)),
-    ("minW", minW->toRecord(stringifySize)),
-    ("minH", minH->toRecord(stringifySize)),
-    ("maxW", maxW->toRecord(stringifySize)),
-    ("maxH", maxH->toRecord(stringifySize)),
+    ("min-width", minW->toRecord(stringifySize)),
+    ("min-height", minH->toRecord(stringifySize)),
+    ("max-width", maxW->toRecord(stringifySize)),
+    ("max-height", maxH->toRecord(stringifySize)),
     // Position
     ("position", position->toRecord(stringify)),
     // Placement

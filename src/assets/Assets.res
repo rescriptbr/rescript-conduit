@@ -1,5 +1,5 @@
-%%raw(`
-  import logoWhite_ from './logo-white.svg'
-`)
+@module("./assets.js")
+external logoWhite: string = "logoWhite"
 
-let logoWhite: string = %raw(`logoWhite_`)
+@module("./assets.js")
+external signinIllustration: string = "signinIllustration"

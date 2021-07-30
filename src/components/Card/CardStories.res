@@ -4,8 +4,8 @@ open Render
 storiesOf("Card", Helpers.storybookModule)
 ->add("Basic usage", () => {
   <Card>
-    <Typography level=#1 variant=#title> {"ReScript & React.js - Real World App"->s} </Typography>
-    <Typography> {"Texto"->s} </Typography>
+    <Typography.Title level=#3> {"ReScript & React.js - Real World App"->s} </Typography.Title>
+    <Typography.Paragraph> {"Texto"->s} </Typography.Paragraph>
   </Card>
 })
 ->ignore
