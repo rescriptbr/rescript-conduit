@@ -73,6 +73,41 @@ type flexDirection = values<
   ],
 >
 
+type flexValue = values<
+  [
+    | #inherit
+    | #initial
+    | #revert
+    | #unset
+    | #number(float)
+  ],
+>
+
+let stringifyFlexValue = value =>
+  switch value {
+  | #number(value) => value->Js.Float.toString
+  | value => stringify(value)
+  }
+
+type flexGrow = flexValue
+type flexShrink = flexValue
+type order = flexValue
+
+let stringifyGrow = stringifyFlexValue
+let stringifyShrink = stringifyFlexValue
+let stringifyOrder = stringifyFlexValue
+
+type flexWrap = values<
+  [
+    | #nowrap
+    | #wrap
+    | #"wrap-reverse"
+    | #inherit
+    | #initial
+    | #unset
+  ],
+>
+
 // Texts
 type textAlign = values<[#center | #left | #right]>
 

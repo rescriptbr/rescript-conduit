@@ -48,6 +48,11 @@ let make = (
   ~justifyContent: option<justifyContent>=?,
   ~flexDirection: option<flexDirection>=?,
   ~alignItems: option<alignItems>=?,
+  ~flexGrow: option<flexGrow>=?,
+  ~flexShrink: option<flexShrink>=?,
+  ~order: option<order>=?,
+  // TODO: Como implementar com dois valores
+  // ~alignSelf: option<>=?,
   // Padding
   ~p: option<spacing>=?,
   ~px: option<spacing>=?,
@@ -66,15 +71,22 @@ let make = (
   ~mr: option<spacing>=?,
   // Texts
   ~textAlign: option<textAlign>=?,
+  ~letterSpacing: option<size>=?,
+  ~lineHeight: option<size>=?,
   // Sizing
   ~width: option<size>=?,
   ~height: option<size>=?,
+  ~minW: option<size>=?,
+  ~minH: option<size>=?,
+  ~maxW: option<size>=?,
+  ~maxH: option<size>=?,
   // Placement
   ~position: option<position>=?,
   ~top: option<size>=?,
   ~bottom: option<size>=?,
   ~left: option<size>=?,
   ~right: option<size>=?,
+  ~zIndex: option<size>=?,
   (),
 ) => {
   let values = [
@@ -82,6 +94,9 @@ let make = (
     ("justify-content", justifyContent->toRecord(stringify)),
     ("align-items", alignItems->toRecord(stringify)),
     ("flex-direction", flexDirection->toRecord(stringify)),
+    ("flex-grow", flexGrow->toRecord(stringifyGrow)),
+    ("flex-shrink", flexShrink->toRecord(stringifyShrink)),
+    ("order", order->toRecord(stringifyOrder)),
     // Padding
     ("padding", p->toRecord(stringifySpacing)),
     ("padding-left", px->toRecord(stringifySpacing)),
@@ -104,9 +119,15 @@ let make = (
     ("margin-right", mr->toRecord(stringifySpacing)),
     //Texts
     ("text-align", textAlign->toRecord(stringify)),
+    ("letter-spacing", letterSpacing->toRecord(stringifySize)),
+    ("line-height", lineHeight->toRecord(stringifySize)),
     // Sizing
     ("width", width->toRecord(stringifySize)),
     ("height", height->toRecord(stringifySize)),
+    ("minW", minW->toRecord(stringifySize)),
+    ("minH", minH->toRecord(stringifySize)),
+    ("maxW", maxW->toRecord(stringifySize)),
+    ("maxH", maxH->toRecord(stringifySize)),
     // Position
     ("position", position->toRecord(stringify)),
     // Placement
@@ -114,6 +135,7 @@ let make = (
     ("bottom", bottom->toRecord(stringifySize)),
     ("left", left->toRecord(stringifySize)),
     ("right", right->toRecord(stringifySize)),
+    ("z-index", zIndex->toRecord(stringify)),
   ]
 
   let xxsStyles = createStyles(values, #xxs)
