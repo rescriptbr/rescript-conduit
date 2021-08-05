@@ -1,5 +1,5 @@
-open UI
 open Render
+open Ancestor.Default
 
 let wrapper = Emotion.Raw.css(
   `
@@ -12,13 +12,13 @@ let wrapper = Emotion.Raw.css(
 let make = () => {
   let (_, devices) = Devices.useDevice()
 
-  <Flex height=[xxs(100.0->#pct)]>
+  <Grid height=[xxs(100.0->#pct)]>
     <Box
       display=[xxs(#none), md(#flex)]
       flexDirection=[xxs(#column)]
       p=[xxs(6)]
       position=[xxs(#relative)]
-      xxs=#6
+      size=[xxs(#6)]
       className=wrapper>
       <Box flexGrow=[xxs(#number(1.0))] width=[xxs(15.0->#rem)]> <Logo /> </Box>
       <Box flexGrow=[xxs(#number(3.0))] pt=[xxs(8)]>
@@ -37,8 +37,7 @@ let make = () => {
       display=[xxs(#flex)]
       justifyContent=[xxs(#center)]
       alignItems=[xxs(#center)]
-      xxs=#12
-      md=#6
+      size=[xxs(#12), md(#6)]
       px=[xxs(6), xs(8), sm(12), md(0)]>
       <Box
         display=[xxs(#flex)]
@@ -61,5 +60,5 @@ let make = () => {
         </Box>
       </Box>
     </Box>
-  </Flex>
+  </Grid>
 }
