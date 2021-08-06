@@ -10,7 +10,13 @@ let wrapper = Emotion.Raw.css(
 
 @react.component
 let make = () => {
+  let (handleSubmit, data) = SigninHooks.useSignin()
   let (_, devices) = Devices.useDevice()
+
+  let _ = switch data {
+  | Some(result) => Js.log(("Result =>", result))
+  | None => Js.log("Not called")
+  }
 
   <Grid height=[xxs(100.0->#pct)]>
     <Box
@@ -51,7 +57,7 @@ let make = () => {
         </Typography.Paragraph>
         <Box mt=[xxs(6)] mb=[xxs(2)]> <Input placeholder="Email" /> </Box>
         <Box mb=[xxs(2)]> <Input placeholder="Password" /> </Box>
-        <Button block=true> {`Sign in`->s} </Button>
+        <Button onClick=handleSubmit block=true> {`Sign in`->s} </Button>
         <Box mt=[xxs(6)]>
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-in for now and `->s}

@@ -17,6 +17,7 @@
   "bs-dependencies": [
     "@rescript/react",
     "@rescriptbr/ancestor",
+    "@ryyppy/rescript-promise",
     "rescript-polished"
   ]
 }
