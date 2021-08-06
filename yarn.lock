@@ -1308,7 +1308,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.14.0":
   version "7.14.8"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
   integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
@@ -3651,6 +3651,16 @@ browserslist@^4.16.5, browserslist@^4.16.6:
     electron-to-chromium "^1.3.723"
     escalade "^3.1.1"
     node-releases "^1.1.71"
+
+bs-css@^13.4.0:
+  version "13.4.1"
+  resolved "https://registry.yarnpkg.com/bs-css/-/bs-css-13.4.1.tgz#7b581ca6f7cb7f5d279cf30846a59d92563a9d04"
+  integrity sha512-S/YEKt/7/1olb52fAZNssDNYMaH5mKi/oVXBSq432uFJN+6hkl9/c+CdM7nnQVWdwDkC3CrbuOaj7fLee+oYxQ==
+
+bs-platform@^9.0.1:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-9.0.2.tgz#a6eac70eb8924a322556dacaccbfbc9b2a0d3a37"
+  integrity sha512-Ye9JqJ4Oa7mcjjoOVRYI8Uc2Cf8N7jQLWDcdUplY7996d/YErSR7WitmV7XnSwr4EvdrbwjEsg1NxNjUQv3ChA==
 
 bser@2.1.1:
   version "2.1.1"
@@ -7847,6 +7857,13 @@ pnp-webpack-plugin@1.6.4, pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+polished@^4.0.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-4.1.3.tgz#7a3abf2972364e7d97770b827eec9a9e64002cfc"
+  integrity sha512-ocPAcVBUOryJEKe0z2KLd1l9EBa1r5mSwlKpExmrLzsnIzJo4axsoU9O2BjOTkDGDT4mZ0WFE5XKTlR3nLnZOA==
+  dependencies:
+    "@babel/runtime" "^7.14.0"
+
 polished@^4.0.5:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/polished/-/polished-4.1.2.tgz#c04fcc203e287e2d866e9cfcaf102dae1c01a816"
@@ -8706,6 +8723,15 @@ repeat-string@^1.5.4, repeat-string@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
+
+rescript-polished@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/rescript-polished/-/rescript-polished-1.15.0.tgz#02a81ee9146bafb6c5783d60e3044e581003e405"
+  integrity sha512-3JyFE3HA67Cwp4vS0eJ6NXM6U2hY53dzzXrO4vmVGO9/zB/W9EjGbhvqE+6Ai/pP7DnTGWKbWHXwY6oMh8Q2HQ==
+  dependencies:
+    bs-css "^13.4.0"
+    bs-platform "^9.0.1"
+    polished "^4.0.3"
 
 rescript@9.1.3:
   version "9.1.3"
