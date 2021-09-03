@@ -1,4 +1,4 @@
-open Ancestor.Default
+open AncestorConduit
 open Render
 
 let wrapper = Emotion.Raw.css(
@@ -18,10 +18,10 @@ let make = () => {
       flexDirection=[xxs(#column)]
       p=[xxs(6)]
       position=[xxs(#relative)]
-      size=[xxs(#6)]
+      columns=[xxs(#6)]
       className=wrapper>
-      <Box flexGrow=[xxs(#number(1.0))] width=[xxs(15.0->#rem)]> <Logo /> </Box>
-      <Box flexGrow=[xxs(#number(3.0))] pt=[xxs(4)]>
+      <Box flexGrow=[xxs(#num(1.0))] width=[xxs(15.0->#rem)]> <Logo /> </Box>
+      <Box flexGrow=[xxs(#num(3.0))] pt=[xxs(4)]>
         <Typography.Title level=#3 color=Theme.Colors.white>
           {`A place to share knowledge`->s}
         </Typography.Title>
@@ -38,7 +38,7 @@ let make = () => {
       display=[xxs(#flex)]
       justifyContent=[xxs(#center)]
       alignItems=[xxs(#center)]
-      size=[xxs(#12), md(#6)]
+      columns=[xxs(#12), md(#6)]
       px=[xxs(6), xs(8), sm(12), md(0)]>
       <Box
         display=[xxs(#flex)]
