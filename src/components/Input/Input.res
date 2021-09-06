@@ -32,12 +32,12 @@ module Styles = {
   })
 }
 @react.component
-let make = (~placeholder=?, ~name=?, ~onChange=?, ~type_=?, ~label=?) => {
+let make = (~placeholder=?, ~name=?, ~onChange=?, ~type_=?, ~label=?, ~disabled=?, ~required=?) => {
   <div className={Styles.wrapper}>
     {switch label {
     | Some(label) => <label className={Styles.label}> {label->s} </label>
     | None => React.null
     }}
-    <input ?type_ ?placeholder ?name ?onChange className={Styles.input} />
+    <input ?required ?disabled ?type_ ?placeholder ?name ?onChange className={Styles.input} />
   </div>
 }

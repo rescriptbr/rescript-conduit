@@ -1766,6 +1766,14 @@
   resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-0.3.0.tgz#4fd7c70cdd86de4c3afcf94ee2e15bbf84712227"
   integrity sha512-UMUlZW6hLRkxJmObsZo3GR5Z+fRL3CEicGweoxDRqS382VKI8NhrvMx0fgO6m8cQeNfO7m0i6BkLWrvtegoLeg==
 
+"@rescriptbr/reform@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@rescriptbr/reform/-/reform-11.0.1.tgz#50a569c898f6d1015f6016cde38050679c417c0d"
+  integrity sha512-sSC0i8RgkvoiS+6DJf+xiI5NXyfZVwDFarnTfMFvkGrQkdz7+4FqygtS7EonG6m2eoO03gaxHCrlqwEQd8674Q==
+  dependencies:
+    reschema "^2.0.3"
+    rescript-react-update "^3.0.1"
+
 "@rollup/pluginutils@^4.1.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.1.tgz#1d4da86dd4eded15656a57d933fda2b9a08d47ec"
@@ -4472,6 +4480,11 @@ debug@^4.1.0, debug@^4.1.1:
   dependencies:
     ms "2.1.2"
 
+decco@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/decco/-/decco-1.5.0.tgz#4a74d5cb9ffc7b3dd821f9e8a77ff633f05e752c"
+  integrity sha512-d+QQ+4AgEHyqK0Ums0xsgxRjC7b1IVe96M/I8y9SZ+uo0bR0Fi4zM9BJnzDcaKwUPM/z5ze5klfRscZkz+psRg==
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
@@ -6753,6 +6766,11 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
+lenses-ppx@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/lenses-ppx/-/lenses-ppx-4.0.0.tgz#bab5f993b334928fa83ee85b8413b0ea9a95063f"
+  integrity sha512-QhUzfkqHni6b2PhGJqNYbKQOZuvs9cyv2w+3xR5AiDS+Z0NaGX03wcKtEY39if8xEYtcv43yJ8eDfeOqKreYVQ==
+
 levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -8603,6 +8621,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+reason-react-update@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/reason-react-update/-/reason-react-update-2.0.0.tgz#64aba8752d212582288996fe988b06087f854b98"
+  integrity sha512-0dHC8p0GKYH2TMCtw8f7tuJTOwJonuB2mg8R0RxjuK5yr9Ne/cIoZOKqjGiwGZkjU9pcT4xowS5OaaBuJJuj9Q==
+
 recursive-readdir@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
@@ -8795,6 +8818,13 @@ repeat-string@^1.5.4, repeat-string@^1.6.1:
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
 
+reschema@2.0.3, reschema@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/reschema/-/reschema-2.0.3.tgz#cfeb745311ff53b9012b0f4257c91b0bf1e7d551"
+  integrity sha512-+3PDYWzy1cPMZWE7NETy6/vuvZqIQUFm0J1zBbsWm2848Wzpcy99L/6F13I1jL1emZ1ZWgJKCqgH7LroKSC/jw==
+  dependencies:
+    reason-react-update "2.0.0"
+
 rescript-polished@^1.15.0:
   version "1.15.0"
   resolved "https://registry.yarnpkg.com/rescript-polished/-/rescript-polished-1.15.0.tgz#02a81ee9146bafb6c5783d60e3044e581003e405"
@@ -8803,6 +8833,11 @@ rescript-polished@^1.15.0:
     bs-css "^13.4.0"
     bs-platform "^9.0.1"
     polished "^4.0.3"
+
+rescript-react-update@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/rescript-react-update/-/rescript-react-update-3.0.2.tgz#8efece4c578110a35fdb1389d890a186dcdf03c6"
+  integrity sha512-oOOaeWma6XEhfZwlB/hB6u+UfYtuHjWS4RpoBeE8NbPX60GYLx5BLoVjEqLKoqXFPJv/2ZgghOKBn2LZo0VaJg==
 
 rescript@9.1.3:
   version "9.1.3"

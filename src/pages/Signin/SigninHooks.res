@@ -1,43 +1,37 @@
-let apiUrl = "https://conduit-api-fp.herokuapp.com/api/users/login"
-
 type user = {
   email: string,
   password: string,
 }
 
+type signinPayload = {user: user}
+
 @decco
-type signinResponse = {token: string}
+type loggedUser = {token: string}
 
-module Fetch = {
-  module Response = {
-    type t
-    @send external json: t => Js.Promise.t<'t> = "json"
-  }
+@decco
+type response = {user: loggedUser}
 
-  @val external fetch: (string, {..}) => Js.Promise.t<Response.t> = "fetch"
-}
-
-let handleSignin = (user: user) => {
-  open Promise
-
-  Fetch.fetch(
-    apiUrl,
-    {
-      "method": "POST",
-      "body": Js.Json.stringifyAny({"user": user}),
-      "headers": {
-        "Content-Type": "application/json",
-      },
-    },
-  )->then(response => Fetch.Response.json(response))
-}
+let handleSignin = (payload: signinPayload) =>
+  QueryClient.post(~url="/users/login", payload)->Promise.then(json =>
+    json->response_decode->Promise.resolve
+  )
 
 let useSignin = () => {
-  let {mutate, data} = ReactQuery.useMutation(
+  let handleSuccess = React.useCallback0((result, _, _) => {
+    switch result {
+    | Ok(response) => Js.log(("Token =>", response.user.token))
+    | Error(error) => Js.log(("API Error =>", error))
+    }
+
+    Promise.resolve()
+  })
+
+  let {mutate} = ReactQuery.useMutation(
     ReactQuery.mutationOptions(
       //
       ~mutationKey="signin",
       ~mutationFn=handleSignin,
+      ~onSuccess=handleSuccess,
       (),
     ),
   )
@@ -45,12 +39,14 @@ let useSignin = () => {
   let handleSubmit = _ => {
     mutate(.
       {
-        email: "john@doe.com",
-        password: "myRe4l1ySaf3Passw0rd!#",
+        user: {
+          email: "john@doe.com",
+          password: "myRe4l1ySaf3Passw0rd!#",
+        },
       },
       None,
     )
   }
 
-  (handleSubmit, data)
+  handleSubmit
 }
