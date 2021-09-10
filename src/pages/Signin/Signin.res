@@ -10,8 +10,11 @@ let wrapper = Emotion.Raw.css(
 
 @react.component
 let make = () => {
-  let handleSubmit = SigninHooks.useSignin()
+  let form = SigninHooks.useSignin()
   let (_, devices) = Devices.useDevice()
+
+  Js.log(("Email", Field(Email)->form.getFieldError))
+  Js.log(("Password", Field(Password)->form.getFieldError))
 
   <Grid height=[xxs(100.0->#pct)]>
     <Box
@@ -36,6 +39,11 @@ let make = () => {
       </Box>
     </Box>
     <Box
+      tag=#form
+      onSubmit={event => {
+        ReactEvent.Synthetic.preventDefault(event)
+        form.submit()
+      }}
       display=[xxs(#flex)]
       justifyContent=[xxs(#center)]
       alignItems=[xxs(#center)]
@@ -51,10 +59,20 @@ let make = () => {
           {`Don't have an account? `->s} <Link> {`Sign up`->s} </Link>
         </Typography.Paragraph>
         <Box mt=[xxs(6)] mb=[xxs(2)]>
-          <Input placeholder="Email" type_="email" required=true />
+          <Input
+            onChange={ReForm.Helpers.handleChange(form.handleChange(Email))}
+            placeholder="Email"
+            type_="text"
+          />
         </Box>
-        <Box mb=[xxs(2)]> <Input placeholder="Password" type_="password" required=true /> </Box>
-        <Button onClick=handleSubmit block=true> {`Sign in`->s} </Button>
+        <Box mb=[xxs(2)]>
+          <Input
+            onChange={ReForm.Helpers.handleChange(form.handleChange(Password))}
+            placeholder="Password"
+            type_="password"
+          />
+        </Box>
+        <Button block=true> {`Sign in`->s} </Button>
         <Box mt=[xxs(6)]>
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-in for now and `->s}

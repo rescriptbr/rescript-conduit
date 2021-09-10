@@ -23,5 +23,8 @@
     "@rescriptbr/reform",
     "reschema"
   ],
-  "ppx-flags": ["decco/ppx"]
+  "ppx-flags": ["decco/ppx", "lenses-ppx/ppx"],
+  "warnings": {
+    "number": "-44"
+  }
 }

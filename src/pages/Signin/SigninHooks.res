@@ -1,9 +1,4 @@
-type user = {
-  email: string,
-  password: string,
-}
-
-type signinPayload = {user: user}
+type signinPayload = {user: SigninForm.Fields.state}
 
 @decco
 type loggedUser = {token: string}
@@ -16,37 +11,49 @@ let handleSignin = (payload: signinPayload) =>
     json->response_decode->Promise.resolve
   )
 
+module Validation = SigninForm.Validation
+
 let useSignin = () => {
-  let handleSuccess = React.useCallback0((result, _, _) => {
+  let handleSuccess = (result, _, _) => {
     switch result {
-    | Ok(response) => Js.log(("Token =>", response.user.token))
-    | Error(error) => Js.log(("API Error =>", error))
+    | Ok(response) => Storage.set(#token, response.user.token)->ignore
+    | Error(_) => Js.log("API Error :(")
     }
 
     Promise.resolve()
-  })
+  }
 
-  let {mutate} = ReactQuery.useMutation(
+  let {mutate: signinMutation} = ReactQuery.useMutation(
     ReactQuery.mutationOptions(
-      //
+      ~onSuccess=handleSuccess,
       ~mutationKey="signin",
       ~mutationFn=handleSignin,
-      ~onSuccess=handleSuccess,
       (),
     ),
   )
 
-  let handleSubmit = _ => {
-    mutate(.
-      {
-        user: {
-          email: "john@doe.com",
-          password: "myRe4l1ySaf3Passw0rd!#",
-        },
-      },
-      None,
-    )
+  let onSubmit = ({state}: SigninForm.onSubmitAPI) => {
+    signinMutation(. {user: state.values}, None)
+
+    None
   }
 
-  handleSubmit
+  let form = SigninForm.useForm(
+    ~validationStrategy=OnDemand,
+    ~onSubmit,
+    ~initialState=SigninForm.initialState,
+    ~schema={
+      open SigninForm.Validation
+
+      Schema(
+        nonEmpty(~error="Email is required", Email) +
+        email(~error="Type a valid email", Email) +
+        nonEmpty(~error="Password is required", Password) +
+        string(~min=8, Password),
+      )
+    },
+    (),
+  )
+
+  form
 }
