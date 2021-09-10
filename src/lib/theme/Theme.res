@@ -1,11 +1,29 @@
 module Colors = {
   let blue = "#477BFF"
-  let white = "#fff"
-  let gray1 = "#A6AABE"
-  let gray2 = "#AEB3C9"
-  let black = "#14103D"
+  let blue2 = "#3163E2"
   let lightBlue1 = "#E2EAFF"
   let blueGradient = "linear-gradient(180deg, #477BFF 0%, #306AFF 100%);"
+
+  let red = "#EC336B"
+
+  let gray1 = "#A6AABE"
+  let gray2 = "#AEB3C9"
+
+  let white = "#fff"
+  let black = "#14103D"
+
+  module Ancestor = {
+    let blue = #hex(blue)
+    let lightBlue1 = #hex(lightBlue1)
+
+    let red = #hex(red)
+
+    let gray1 = #hex(gray1)
+    let gray2 = #hex(gray2)
+
+    let black = #hex(black)
+    let white = #hex(white)
+  }
 }
 
 module Radius = {
@@ -15,7 +33,7 @@ module Radius = {
 }
 
 module Spacing = {
-  let make = (value: int) => value->Js.Int.toFloat->(v => v *. 0.6)->Js.Float.toString ++ "rem"
+  let make = (value: float) => value->(v => v *. 0.8)->Js.Float.toString ++ "rem"
 }
 
 let fontFamily = "'DM Sans', sans-serif"

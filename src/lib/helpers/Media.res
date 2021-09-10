@@ -20,7 +20,7 @@ let valueOfBreakpoint = values =>
   | #xl => 1440
   }
 
-let createMatchMedia = device => `(min-width: ${device->valueOfBreakpoint->Js.Int.toString})`
+let createMatchMedia = device => `(min-width: ${device->valueOfBreakpoint->Js.Int.toString}px)`
 
 let useDevice = () => {
   let xs = useMedia(createMatchMedia(#xs), true)

@@ -1,5 +1,6 @@
 let includeStyles = () =>
-  Emotion.injectGlobal(`
+  Emotion.injectGlobal(
+    `
   html, body, #root {
     height: 100%;
     width: 100%;
@@ -13,5 +14,7 @@ let includeStyles = () =>
 
   * {
     box-sizing: border-box;
+    font-family: ${Theme.fontFamily};
   }
-`)
+`,
+  )
