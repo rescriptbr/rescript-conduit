@@ -6,12 +6,15 @@ type loggedUser = {token: string}
 @decco
 type response = {user: loggedUser}
 
-let handleSignin = (payload: signinPayload) =>
+type hookResult = {
+  form: SigninForm.api,
+  isLoading: bool,
+}
+
+let handleFetch = (payload: signinPayload) =>
   QueryClient.post(~url="/users/login", payload)->Promise.then(json =>
     json->response_decode->Promise.resolve
   )
-
-module Validation = SigninForm.Validation
 
 let useSignin = () => {
   let handleSuccess = (result, _, _) => {
@@ -23,11 +26,11 @@ let useSignin = () => {
     Promise.resolve()
   }
 
-  let {mutate: signinMutation} = ReactQuery.useMutation(
+  let {mutate: signinMutation, isLoading} = ReactQuery.useMutation(
     ReactQuery.mutationOptions(
       ~onSuccess=handleSuccess,
       ~mutationKey="signin",
-      ~mutationFn=handleSignin,
+      ~mutationFn=handleFetch,
       (),
     ),
   )
@@ -39,7 +42,7 @@ let useSignin = () => {
   }
 
   let form = SigninForm.useForm(
-    ~validationStrategy=OnDemand,
+    ~validationStrategy=OnChange,
     ~onSubmit,
     ~initialState=SigninForm.initialState,
     ~schema={
@@ -55,5 +58,5 @@ let useSignin = () => {
     (),
   )
 
-  form
+  {form: form, isLoading: isLoading}
 }

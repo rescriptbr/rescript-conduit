@@ -1,6 +1,8 @@
 open Render
 open AncestorConduit
 
+module Array = Js.Array2
+
 let wrapper = Emotion.Raw.css(
   `
   background: ${Theme.Colors.blue};
@@ -10,8 +12,17 @@ let wrapper = Emotion.Raw.css(
 
 @react.component
 let make = () => {
-  let form = SigninHooks.useSignin()
+  let {form, isLoading} = SigninHooks.useSignin()
   let (_, devices) = Media.useDevice()
+
+  let hasInvalidFields = form.fieldsState->Array.some(((_, state)) =>
+    switch state {
+    | Error(_)
+    | Pristine
+    | NestedErrors(_) => true
+    | _ => false
+    }
+  )
 
   <Grid height=[xs(100.0->#pct)]>
     <Box
@@ -57,6 +68,7 @@ let make = () => {
         </Typography.Paragraph>
         <Box mt=[xs(6)] mb=[xs(2)]>
           <Input
+            error={form.getFieldError(Field(Email))}
             onChange={ReForm.Helpers.handleChange(form.handleChange(Email))}
             placeholder="Email"
             type_="text"
@@ -64,12 +76,18 @@ let make = () => {
         </Box>
         <Box mb=[xs(2)]>
           <Input
+            error={form.getFieldError(Field(Password))}
             onChange={ReForm.Helpers.handleChange(form.handleChange(Password))}
             placeholder="Password"
             type_="password"
           />
         </Box>
-        <Button block=true> {`Sign in`->s} </Button>
+        <Button
+          loading={isLoading}
+          disabled={hasInvalidFields || form.formState === Pristine || isLoading}
+          block=true>
+          {`Sign in`->s}
+        </Button>
         <Box mt=[xs(6)]>
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-in for now and `->s}
