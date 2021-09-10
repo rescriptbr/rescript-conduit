@@ -11,7 +11,7 @@ let tab = (~active) =>
     "listStyle": "none",
     "> button": {
       "transition": "200ms color",
-      "padding": `${Theme.Spacing.make(1)} ${Theme.Spacing.make(2)}`,
+      "padding": `${Theme.Spacing.make(1.)} ${Theme.Spacing.make(2.)}`,
       "borderRadius": Theme.Radius.small,
       "background": active ? Theme.Colors.blueGradient : "transparent",
       "color": active ? Theme.Colors.white : Theme.Colors.gray1,

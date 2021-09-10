@@ -4,7 +4,7 @@ let title = (~level, ~color: string, ~align: align, ~noMargin) =>
   Emotion.css({
     "color": color,
     "fontFamily": Theme.fontFamily,
-    "margin": noMargin ? "0" : `${Theme.Spacing.make(2)} 0 0 0`,
+    "margin": noMargin ? "0" : `${Theme.Spacing.make(2.)} 0 0 0`,
     "textAlign": align,
     "fontSize": switch level {
     | #1 => "7.2rem"
@@ -43,7 +43,7 @@ let paragraph = (~level, ~align: align, ~color, ~noMargin) =>
     },
     "color": color,
     "textAlign": align,
-    "margin": noMargin ? "0" : `${Theme.Spacing.make(2)} 0 0 0`,
+    "margin": noMargin ? "0" : `${Theme.Spacing.make(2.)} 0 0 0`,
     "fontSize": switch level {
     | #1 => "2.4rem"
     | #2 => "2.0rem"

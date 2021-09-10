@@ -1,43 +1,80 @@
 open Render
+open AncestorConduit
 
 module Styles = {
-  open Emotion
+  open Emotion.Raw
 
-  let wrapper = css({
-    "width": "100%",
-  })
+  let input = (~error) =>
+    css(
+      `
+    height: 5.6rem;
+    width: 100%;
+    background: ${Theme.Colors.lightBlue1};
+    font-size: 2.0rem;
+    border-style: none;
+    border-radius: ${Theme.Radius.small};
+    padding: 0 ${Theme.Spacing.make(3.)};
+    box-sizing: border-box;
+    color: ${Theme.Colors.black};
+    outline-style: none;
+    transition: 300ms;
+    &:focus {
+      transition: 300ms;
+      box-shadow: ${switch error {
+        | None => `0px 0px 0px 2px ${Theme.Colors.blue}`
+        | Some(_) => ""
+        }};
+    }
 
-  let label = css({
-    "fontSize": "2.0rem",
-    "color": Theme.Colors.black,
-    "fontFamily": Theme.fontFamily,
-    "display": "block",
-    "marginBottom": "0.8rem",
-  })
+    box-shadow: ${switch error {
+        | None => "none"
+        | Some(_) => `0px 0px 0px 2px ${Theme.Colors.red}`
+        }};
 
-  let input = css({
-    "height": "5.6rem",
-    "width": "100%",
-    "background": Theme.Colors.lightBlue1,
-    "font": `2.0rem ${Theme.fontFamily}`,
-    "borderStyle": "none",
-    "borderRadius": Theme.Radius.small,
-    "padding": "0 2.4rem",
-    "boxSizing": "border-box",
-    "color": Theme.Colors.black,
-    "outlineStyle": "none",
-    "&::placeholder": {
-      "color": Theme.Colors.gray2,
-    },
-  })
+    &::placeholder: {
+      color: ${Theme.Colors.gray1};
+    }
+  `,
+    )
 }
+
 @react.component
-let make = (~placeholder=?, ~name=?, ~onChange=?, ~type_=?, ~label=?, ~disabled=?, ~required=?) => {
-  <div className={Styles.wrapper}>
+let make = (
+  ~placeholder=?,
+  ~name=?,
+  ~onBlur=?,
+  ~onChange=?,
+  ~error=None,
+  ~type_=?,
+  ~label=?,
+  ~disabled=?,
+) => {
+  <Base width=[xs(100.->#pct)]>
     {switch label {
-    | Some(label) => <label className={Styles.label}> {label->s} </label>
+    | Some(label) =>
+      <Base
+        tag=#label
+        fontSize=[xs(2.->#rem)]
+        color=[xs(Theme.Colors.Ancestor.black)]
+        display=[xs(#block)]
+        mb=[xs(1)]>
+        {label->s}
+      </Base>
     | None => React.null
     }}
-    <input ?required ?disabled ?type_ ?placeholder ?name ?onChange className={Styles.input} />
-  </div>
+    <input ?disabled ?type_ ?placeholder ?name ?onBlur ?onChange className={Styles.input(~error)} />
+    {switch error {
+    | None => React.null
+    | Some(message) =>
+      <Base
+        tag=#span
+        color=[xs(Theme.Colors.Ancestor.red)]
+        fontWeight=[xs(#600)]
+        fontSize=[xs(1.20->#rem)]
+        display=[xs(#block)]
+        mt=[xs(1)]>
+        {message->s}
+      </Base>
+    }}
+  </Base>
 }
