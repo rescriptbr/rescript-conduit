@@ -10,18 +10,18 @@ let wrapper = Emotion.Raw.css(
 
 @react.component
 let make = () => {
-  let (_, devices) = Devices.useDevice()
+  let (_, devices) = Media.useDevice()
 
-  <Grid height=[xxs(100.0->#pct)]>
+  <Grid height=[xs(100.0->#pct)]>
     <Box
-      display=[xxs(#none), md(#flex)]
-      flexDirection=[xxs(#column)]
-      p=[xxs(6)]
-      position=[xxs(#relative)]
-      columns=[xxs(#6)]
+      display=[xs(#none), md(#flex)]
+      flexDirection=[xs(#column)]
+      p=[xs(6)]
+      position=[xs(#relative)]
+      columns=[xs(#6)]
       className=wrapper>
-      <Box flexGrow=[xxs(#num(1.0))] width=[xxs(15.0->#rem)]> <Logo /> </Box>
-      <Box flexGrow=[xxs(#num(3.0))] pt=[xxs(4)]>
+      <Box flexGrow=[xs(#num(1.0))] width=[xs(15.0->#rem)]> <Logo /> </Box>
+      <Box flexGrow=[xs(#num(3.0))] pt=[xs(4)]>
         <Typography.Title level=#3 color=Theme.Colors.white>
           {`A place to share knowledge`->s}
         </Typography.Title>
@@ -30,30 +30,30 @@ let make = () => {
           {`Where good ideas find you.`->s}
         </Typography.Paragraph>
       </Box>
-      <Box position=[xxs(#absolute)] bottom=[xxs(-5.0->#rem)] left=[xxs(-5.0->#rem)]>
+      <Box position=[xs(#absolute)] bottom=[xs(-5.0->#rem)] left=[xs(-5.0->#rem)]>
         <img src=Assets.signinIllustration />
       </Box>
     </Box>
     <Box
-      display=[xxs(#flex)]
-      justifyContent=[xxs(#center)]
-      alignItems=[xxs(#center)]
-      columns=[xxs(#12), md(#6)]
-      px=[xxs(6), xs(8), sm(12), md(0)]>
+      display=[xs(#flex)]
+      justifyContent=[xs(#center)]
+      alignItems=[xs(#center)]
+      columns=[xs(#12), md(#6)]
+      px=[xs(6), xs(8), sm(12), md(0)]>
       <Box
-        display=[xxs(#flex)]
-        flexDirection=[xxs(#column)]
-        maxW=[xxs(100.0->#pct), md(42.0->#rem)]
-        width=[xxs(100.0->#pct)]>
+        display=[xs(#flex)]
+        flexDirection=[xs(#column)]
+        maxW=[xs(100.0->#pct), md(42.0->#rem)]
+        width=[xs(100.0->#pct)]>
         <Typography.Title level=#4> {`Sign up`->s} </Typography.Title>
         <Typography.Paragraph level=#2>
           {`Already have an acount? `->s} <Link> {`Sign in`->s} </Link>
         </Typography.Paragraph>
-        <Box mt=[xxs(6)] mb=[xxs(2)]> <Input placeholder="Username" /> </Box>
-        <Box mb=[xxs(2)]> <Input placeholder="Email" /> </Box>
-        <Box mb=[xxs(2)]> <Input placeholder="Password" /> </Box>
+        <Box mt=[xs(6)] mb=[xs(2)]> <Input placeholder="Username" /> </Box>
+        <Box mb=[xs(2)]> <Input placeholder="Email" /> </Box>
+        <Box mb=[xs(2)]> <Input placeholder="Password" /> </Box>
         <Button block=true> {`Sign in`->s} </Button>
-        <Box mt=[xxs(6)]>
+        <Box mt=[xs(6)]>
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-up for now and `->s}
             {devices.md ? React.null : <br />}

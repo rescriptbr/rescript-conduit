@@ -1,6 +1,5 @@
 module Config = Ancestor.Make({
   type breakpoints<'a> = [
-    | #xxs('a)
     | #xs('a)
     | #sm('a)
     | #md('a)
@@ -14,8 +13,7 @@ module Config = Ancestor.Make({
 
   let sizeByBreakpoints = values =>
     switch values {
-    | #xxs(_) => 0
-    | #xs(_) => 360
+    | #xs(_) => 0
     | #sm(_) => 475
     | #md(_) => 840
     | #lg(_) => 1280
@@ -24,7 +22,6 @@ module Config = Ancestor.Make({
 
   let unboxBreakpointValue = values =>
     switch values {
-    | #xxs(v) => v
     | #xs(v) => v
     | #sm(v) => v
     | #md(v) => v
@@ -40,7 +37,6 @@ module Box = Config.Box
 module Text = Config.Typography
 module Grid = Config.Grid
 
-let xxs = v => #xxs(v)
 let xs = v => #xs(v)
 let sm = v => #sm(v)
 let md = v => #md(v)
