@@ -18,8 +18,15 @@ let handleFetch = (payload: signinPayload) =>
 
 let useSignin = () => {
   let handleSuccess = (result, _, _) => {
+    open Promise
+
     switch result {
-    | Ok(response) => Storage.set(#token, response.user.token)->ignore
+    | Ok(response) =>
+      Storage.set(#token, response.user.token)
+      //
+      ->thenResolve(_ => Router.push(Home))
+      ->ignore
+
     | Error(_) => Js.log("API Error :(")
     }
 
@@ -57,6 +64,21 @@ let useSignin = () => {
     },
     (),
   )
+
+  React.useEffect0(() => {
+    open Promise
+
+    Storage.get(#token)
+    //
+    ->thenResolve(token =>
+      switch token {
+      | Some(_) => Router.push(Home)
+      | None => ()
+      }
+    )
+    ->ignore
+    None
+  })
 
   {form: form, isLoading: isLoading}
 }

@@ -11,7 +11,10 @@ let post = (~url, body) => {
         "body": Js.Json.stringifyAny(body),
         "headers": {
           "Content-Type": "application/json",
-          "Authorization": `Token ${token}`,
+          "Authorization": switch token {
+          | Some(token) => `Token ${token}`
+          | None => ""
+          },
         },
       },
     )->then(response => Fetch.Response.json(response))

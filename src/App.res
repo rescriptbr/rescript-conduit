@@ -6,12 +6,13 @@ let queryClient = ReactQuery.Provider.createClient()
 
 @react.component
 let make = () => {
-  let url = RescriptReactRouter.useUrl()
+  let route = Router.useRouter()
 
   <ReactQuery.Provider client={queryClient}>
-    {switch url.path {
-    | list{} => <Signin />
-    | list{"signup"} => <Signup />
+    {switch route {
+    | Signin => <Signin />
+    | Signup => <Signup />
+    | Home => "Home page..."->s
     | _ => "Not found..."->s
     }}
   </ReactQuery.Provider>

@@ -64,7 +64,7 @@ let make = () => {
         width=[xs(100.0->#pct)]>
         <Typography.Title level=#4> {`Sign in`->s} </Typography.Title>
         <Typography.Paragraph level=#2>
-          {`Don't have an account? `->s} <Link> {`Sign up`->s} </Link>
+          {`Don't have an account? `->s} <Link to_=Signup> {`Sign up`->s} </Link>
         </Typography.Paragraph>
         <Box mt=[xs(6)] mb=[xs(2)]>
           <Input
@@ -92,7 +92,7 @@ let make = () => {
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-in for now and `->s}
             {devices.md ? React.null : <br />}
-            <Link> {`start reading`->s} </Link>
+            <Link to_=Home> {`start reading`->s} </Link>
           </Typography.Paragraph>
         </Box>
       </Box>

@@ -47,7 +47,7 @@ let make = () => {
         width=[xs(100.0->#pct)]>
         <Typography.Title level=#4> {`Sign up`->s} </Typography.Title>
         <Typography.Paragraph level=#2>
-          {`Already have an acount? `->s} <Link> {`Sign in`->s} </Link>
+          {`Already have an acount? `->s} <Link to_=Signin> {`Sign in`->s} </Link>
         </Typography.Paragraph>
         <Box mt=[xs(6)] mb=[xs(2)]> <Input placeholder="Username" /> </Box>
         <Box mb=[xs(2)]> <Input placeholder="Email" /> </Box>
@@ -57,7 +57,7 @@ let make = () => {
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-up for now and `->s}
             {devices.md ? React.null : <br />}
-            <Link> {`start reading`->s} </Link>
+            <Link to_=Home> {`start reading`->s} </Link>
           </Typography.Paragraph>
         </Box>
       </Box>
