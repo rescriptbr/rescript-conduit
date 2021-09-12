@@ -11,10 +11,11 @@ type hookResult = {
   isLoading: bool,
 }
 
-let handleFetch = (payload: signinPayload) =>
-  QueryClient.post(~url="/users/login", payload)->Promise.then(json =>
-    json->response_decode->Promise.resolve
-  )
+let handleFetch = (payload: signinPayload) => {
+  open Promise
+
+  QueryClient.post(~url="/users/login", payload)->thenResolve(json => json->response_decode)
+}
 
 let useSignin = () => {
   let handleSuccess = (result, _, _) => {
@@ -69,7 +70,6 @@ let useSignin = () => {
     open Promise
 
     Storage.get(#token)
-    //
     ->thenResolve(token =>
       switch token {
       | Some(_) => Router.push(Home)

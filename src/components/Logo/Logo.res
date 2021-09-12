@@ -4,5 +4,5 @@ let logo = Emotion.css({
 
 @react.component
 let make = () => {
-  <img className=logo src=Assets.logoWhite alt="Logo" />
+  <div className="container"> <img className=logo src=Assets.logoWhite alt="Logo" /> </div>
 }

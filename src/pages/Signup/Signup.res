@@ -19,7 +19,8 @@ let make = () => {
       p=[xs(6)]
       position=[xs(#relative)]
       columns=[xs(#6)]
-      className=wrapper>
+      overflow=[xs(#hidden)]
+      bgColor=[xs(Theme.Colors.Ancestor.blue)]>
       <Box flexGrow=[xs(#num(1.0))] width=[xs(15.0->#rem)]> <Logo /> </Box>
       <Box flexGrow=[xs(#num(3.0))] pt=[xs(4)]>
         <Typography.Title level=#3 color=Theme.Colors.white>
@@ -30,9 +31,14 @@ let make = () => {
           {`Where good ideas find you.`->s}
         </Typography.Paragraph>
       </Box>
-      <Box position=[xs(#absolute)] bottom=[xs(-5.0->#rem)] left=[xs(-5.0->#rem)]>
-        <img src=Assets.signinIllustration />
-      </Box>
+      <Base
+        tag=#img
+        width=[xs(40.->#rem)]
+        position=[xs(#absolute)]
+        bottom=[xs(0.->#rem)]
+        left=[xs(0.->#rem)]
+        src=Assets.signinIllustration
+      />
     </Box>
     <Box
       display=[xs(#flex)]

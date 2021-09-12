@@ -16,5 +16,10 @@ let includeStyles = () =>
     box-sizing: border-box;
     font-family: ${Theme.fontFamily};
   }
+
+  ::selection {
+    background: ${Theme.Colors.blue};
+    color: ${Theme.Colors.white};
+  }
 `,
   )
