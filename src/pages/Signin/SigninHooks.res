@@ -24,8 +24,10 @@ let useSignin = () => {
     switch result {
     | Ok(response) =>
       Storage.set(#token, response.user.token)
-      //
-      ->thenResolve(_ => Router.push(Home))
+      ->then(_ => {
+        Router.push(Home)
+        resolve()
+      })
       ->ignore
 
     | Error(_) => Js.log("API Error :(")

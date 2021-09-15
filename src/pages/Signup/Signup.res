@@ -1,15 +1,11 @@
 open AncestorConduit
 open Render
 
-let wrapper = Emotion.Raw.css(
-  `
-  background: ${Theme.Colors.blue};
-  overflow: hidden;
-`,
-)
+module Helpers = ReForm.Helpers
 
 @react.component
 let make = () => {
+  let {form, isLoading} = SignupHook.useSignup()
   let (_, devices) = Media.useDevice()
 
   <Grid height=[xs(100.0->#pct)]>
@@ -41,6 +37,11 @@ let make = () => {
       />
     </Box>
     <Box
+      tag=#form
+      onSubmit={event => {
+        ReactEvent.Synthetic.preventDefault(event)
+        form.submit()
+      }}
       display=[xs(#flex)]
       justifyContent=[xs(#center)]
       alignItems=[xs(#center)]
@@ -55,10 +56,28 @@ let make = () => {
         <Typography.Paragraph level=#2>
           {`Already have an acount? `->s} <Link to_=Signin> {`Sign in`->s} </Link>
         </Typography.Paragraph>
-        <Box mt=[xs(6)] mb=[xs(2)]> <Input placeholder="Username" /> </Box>
-        <Box mb=[xs(2)]> <Input placeholder="Email" /> </Box>
-        <Box mb=[xs(2)]> <Input placeholder="Password" /> </Box>
-        <Button block=true> {`Sign in`->s} </Button>
+        <Box mt=[xs(6)] mb=[xs(2)]>
+          <Input
+            error={form.getFieldError(Field(Username))}
+            onChange={ReForm.Helpers.handleChange(form.handleChange(Username))}
+            placeholder="Username"
+          />
+        </Box>
+        <Box mb=[xs(2)]>
+          <Input
+            error={form.getFieldError(Field(Email))}
+            onChange={ReForm.Helpers.handleChange(form.handleChange(Email))}
+            placeholder="Email"
+          />
+        </Box>
+        <Box mb=[xs(2)]>
+          <Input
+            error={form.getFieldError(Field(Password))}
+            onChange={ReForm.Helpers.handleChange(form.handleChange(Password))}
+            placeholder="Password"
+          />
+        </Box>
+        <Button loading=isLoading disabled=isLoading block=true> {`Sign in`->s} </Button>
         <Box mt=[xs(6)]>
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-up for now and `->s}
