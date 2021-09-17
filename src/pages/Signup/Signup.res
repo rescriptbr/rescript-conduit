@@ -2,11 +2,13 @@ open AncestorConduit
 open Render
 
 module Helpers = ReForm.Helpers
+module Array = Js.Array2
 
 @react.component
 let make = () => {
-  let {form, isLoading} = SignupHook.useSignup()
+  let {form, isLoading, handleUsernameChange} = SignupHook.useSignup()
   let (_, devices) = Media.useDevice()
+  let hasInvalidFields = FormHelpers.hasInvalidFields(form.fieldsState)
 
   <Grid height=[xs(100.0->#pct)]>
     <Box
@@ -59,25 +61,31 @@ let make = () => {
         <Box mt=[xs(6)] mb=[xs(2)]>
           <Input
             error={form.getFieldError(Field(Username))}
-            onChange={ReForm.Helpers.handleChange(form.handleChange(Username))}
+            onChange={handleUsernameChange}
             placeholder="Username"
           />
         </Box>
         <Box mb=[xs(2)]>
           <Input
             error={form.getFieldError(Field(Email))}
-            onChange={ReForm.Helpers.handleChange(form.handleChange(Email))}
+            onChange={FormHelpers.getInputValue(form.handleChange(Email))}
             placeholder="Email"
           />
         </Box>
         <Box mb=[xs(2)]>
           <Input
             error={form.getFieldError(Field(Password))}
-            onChange={ReForm.Helpers.handleChange(form.handleChange(Password))}
+            onChange={FormHelpers.getInputValue(form.handleChange(Password))}
             placeholder="Password"
+            type_="password"
           />
         </Box>
-        <Button loading=isLoading disabled=isLoading block=true> {`Sign in`->s} </Button>
+        <Button
+          disabled={hasInvalidFields || form.formState === Pristine || isLoading}
+          loading=isLoading
+          block=true>
+          {`Sign up`->s}
+        </Button>
         <Box mt=[xs(6)]>
           <Typography.Paragraph align={devices.md ? #left : #center} level=#2>
             {`Skip sign-up for now and `->s}

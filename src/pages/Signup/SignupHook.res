@@ -1,17 +1,39 @@
 module Regex = Js.Re
+module String = Js.String2
 
-type payload = {user: SignupForm.Fields.state}
+type signupPayload = {user: SignupForm.Fields.state}
+
+@decco
+type response = {user: UserTypes.t}
 
 type hookResult = {
   form: SignupForm.api,
+  handleUsernameChange: ReactEvent.Form.t => unit,
   isLoading: bool,
 }
 
-let handleFetch = payload => QueryClient.post(~url="/users", payload)
+let handleFetch = (payload: signupPayload) =>
+  QueryClient.post(~url="/users", payload)
+  //
+  ->Promise.then(response => {
+    response->response_decode->Promise.resolve
+  })
 
 let useSignup = () => {
   let handleSuccess = (result, _, _) => {
-    Js.log(result)
+    open Promise
+
+    switch result {
+    | Ok(response) =>
+      Storage.set(#token, response.user.token)
+      ->then(_ => {
+        Router.push(Home)
+        resolve()
+      })
+      ->ignore
+
+    | Error(_) => Js.log("Implementar feedback de erro")
+    }
 
     Promise.resolve()
   }
@@ -48,5 +70,28 @@ let useSignup = () => {
     },
     (),
   )
-  {form: form, isLoading: isLoading}
+
+  let handleUsernameChange = event => {
+    let target = ReactEvent.Form.target(event)
+    let value = target["value"]->String.toLowerCase->String.replaceByRe(%re("/\s+/g"), "")
+    target["value"] = value
+
+    form.handleChange(Username, value)
+  }
+
+  React.useEffect0(() => {
+    open Promise
+
+    Storage.get(#token)
+    ->thenResolve(token =>
+      switch token {
+      | Some(_) => Router.push(Home)
+      | None => ()
+      }
+    )
+    ->ignore
+    None
+  })
+
+  {form: form, handleUsernameChange: handleUsernameChange, isLoading: isLoading}
 }
