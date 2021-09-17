@@ -30,7 +30,7 @@ let useSignin = () => {
       })
       ->ignore
 
-    | Error(_) => Js.log("API Error :(")
+    | Error(_) => Js.log("Implementar feedback de erro")
     }
 
     Promise.resolve()

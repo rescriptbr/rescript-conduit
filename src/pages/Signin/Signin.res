@@ -1,21 +1,12 @@
 open Render
 open AncestorConduit
 
-module Array = Js.Array2
-
 @react.component
 let make = () => {
   let {form, isLoading} = SigninHooks.useSignin()
   let (_, devices) = Media.useDevice()
 
-  let hasInvalidFields = form.fieldsState->Array.some(((_, state)) =>
-    switch state {
-    | Error(_)
-    | Pristine
-    | NestedErrors(_) => true
-    | _ => false
-    }
-  )
+  let hasInvalidFields = FormHelpers.hasInvalidFields(form.fieldsState)
 
   <Grid height=[xs(100.0->#pct)]>
     <Box
@@ -68,7 +59,7 @@ let make = () => {
         <Box mt=[xs(6)] mb=[xs(2)]>
           <Input
             error={form.getFieldError(Field(Email))}
-            onChange={ReForm.Helpers.handleChange(form.handleChange(Email))}
+            onChange={FormHelpers.getInputValue(form.handleChange(Email))}
             placeholder="Email"
             type_="text"
           />
@@ -76,7 +67,7 @@ let make = () => {
         <Box mb=[xs(2)]>
           <Input
             error={form.getFieldError(Field(Password))}
-            onChange={ReForm.Helpers.handleChange(form.handleChange(Password))}
+            onChange={FormHelpers.getInputValue(form.handleChange(Password))}
             placeholder="Password"
             type_="password"
           />
