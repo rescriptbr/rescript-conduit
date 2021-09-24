@@ -5,6 +5,7 @@ module Colors = {
   let blueGradient = "linear-gradient(180deg, #477BFF 0%, #306AFF 100%);"
 
   let red = "#EC336B"
+  let redLight = "#FACCDA"
 
   let gray1 = "#A6AABE"
   let gray2 = "#AEB3C9"
@@ -17,6 +18,7 @@ module Colors = {
     let lightBlue1 = #hex(lightBlue1)
 
     let red = #hex(red)
+    let redLight = #hex(redLight)
 
     let gray1 = #hex(gray1)
     let gray2 = #hex(gray2)

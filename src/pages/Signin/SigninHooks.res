@@ -1,3 +1,5 @@
+type signinError = InvalidLogin | UnexpectedError
+
 type signinPayload = {user: SigninForm.Fields.state}
 
 @decco
@@ -9,6 +11,7 @@ type response = {user: loggedUser}
 type hookResult = {
   form: SigninForm.api,
   isLoading: bool,
+  error: option<signinError>,
 }
 
 let handleFetch = (payload: signinPayload) => {
@@ -18,6 +21,7 @@ let handleFetch = (payload: signinPayload) => {
 }
 
 let useSignin = () => {
+  let (error, setError) = React.useState(_ => None)
   let handleSuccess = (result, _, _) => {
     open Promise
 
@@ -30,15 +34,21 @@ let useSignin = () => {
       })
       ->ignore
 
-    | Error(_) => Js.log("Implementar feedback de erro")
+    | Error(_) => setError(_ => Some(UnexpectedError))
     }
 
+    Promise.resolve()
+  }
+
+  let handleError = (_, _, _) => {
+    setError(_ => Some(InvalidLogin))
     Promise.resolve()
   }
 
   let {mutate: signinMutation, isLoading} = ReactQuery.useMutation(
     ReactQuery.mutationOptions(
       ~onSuccess=handleSuccess,
+      ~onError=handleError,
       ~mutationKey="signin",
       ~mutationFn=handleFetch,
       (),
@@ -46,6 +56,7 @@ let useSignin = () => {
   )
 
   let onSubmit = ({state}: SigninForm.onSubmitAPI) => {
+    setError(_ => None)
     signinMutation(. {user: state.values}, None)
 
     None
@@ -82,5 +93,5 @@ let useSignin = () => {
     None
   })
 
-  {form: form, isLoading: isLoading}
+  {form: form, isLoading: isLoading, error: error}
 }
