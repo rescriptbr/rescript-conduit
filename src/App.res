@@ -4,6 +4,19 @@ GlobalStyles.includeStyles()
 
 let queryClient = ReactQuery.Provider.createClient()
 
+module Main = {
+  @react.component
+  let make = () => {
+    let route = Router.useRouter()
+    <Layout>
+      {switch route {
+      | Home => "Home..."->s
+      | _ => React.null
+      }}
+    </Layout>
+  }
+}
+
 @react.component
 let make = () => {
   let route = Router.useRouter()
@@ -12,8 +25,7 @@ let make = () => {
     {switch route {
     | Signin => <Signin />
     | Signup => <Signup />
-    | Home => "Home page..."->s
-    | _ => "Not found..."->s
+    | _ => <Main />
     }}
   </ReactQuery.Provider>
 }

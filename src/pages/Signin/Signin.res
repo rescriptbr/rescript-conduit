@@ -18,7 +18,7 @@ let make = () => {
       overflow=[xs(#hidden)]
       bgColor=[xs(Theme.Colors.Ancestor.blue)]>
       <Box flexGrow=[xs(#num(1.0))] width=[xs(15.0->#rem)]>
-        <Animations.FadeIn delay=0.1> <Logo /> </Animations.FadeIn>
+        <Animations.FadeIn delay=0.1> <Logo variant=#white /> </Animations.FadeIn>
       </Box>
       <Box flexGrow=[xs(#num(3.0))] pt=[xs(4)]>
         <Animations.FadeIn delay=0.2>

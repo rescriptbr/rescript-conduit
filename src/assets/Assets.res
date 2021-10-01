@@ -6,3 +6,6 @@ external signinIllustration: string = "signinIllustration"
 
 @module("./assets.js")
 external spinner: string = "spinner"
+
+@module("./assets.js")
+external logo: string = "logo"

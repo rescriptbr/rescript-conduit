@@ -39,3 +39,4 @@ module Spacing = {
 }
 
 let fontFamily = "'DM Sans', sans-serif"
+let wrapperMaxW = #rem(144.0)
