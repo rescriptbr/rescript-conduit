@@ -32,7 +32,7 @@ module Styles = {
         }};
 
     &::placeholder: {
-      color: ${Theme.Colors.gray1};
+      color: ${Theme.Colors.gray2};
     }
   `,
     )

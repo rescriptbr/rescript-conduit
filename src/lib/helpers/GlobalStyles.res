@@ -6,6 +6,7 @@ let includeStyles = () =>
     width: 100%;
     padding: 0;
     margin: 0;
+    background: #f5f5f5;
   }
 
   html {

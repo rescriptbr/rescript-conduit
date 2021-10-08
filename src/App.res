@@ -11,6 +11,7 @@ module Main = {
     <Layout>
       {switch route {
       | Home => "Home..."->s
+      | UserSettings => <UserSettings />
       | _ => React.null
       }}
     </Layout>
