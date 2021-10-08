@@ -10,6 +10,30 @@ module Styles = {
   })
 }
 
+module Avatar = {
+  @react.component
+  let make = (~image) => {
+    <Box ml=[xs(2)]>
+      {switch image {
+      | None =>
+        <Base
+          fontSize=[xs(1.6->#rem)]
+          color=[xs(Theme.Colors.white->#hex)]
+          display=[xs(#flex)]
+          alignItems=[xs(#center)]
+          justifyContent=[xs(#center)]
+          borderRadius=[xs(3)]
+          width=[xs(4.8->#rem)]
+          height=[xs(4.8->#rem)]
+          bgColor=[xs(Theme.Colors.blue->#hex)]>
+          {`M`->s}
+        </Base>
+      | Some(src) =>
+        <Base tag=#img borderRadius=[xs(3)] width=[xs(4.8->#rem)] height=[xs(4.8->#rem)] src />
+      }}
+    </Box>
+  }
+}
 @react.component
 let make = () => {
   let result = UseMeHook.useMe()
@@ -19,11 +43,20 @@ let make = () => {
       <Box columns=[xs(#3)]> <Box maxW=[xs(15.0->#rem)]> <Logo /> </Box> </Box>
       <Box>
         {switch result {
-        | Data(user) => <Typography.Paragraph> {user.username->s} </Typography.Paragraph>
+        | Data(user) =>
+          <Box display=[xs(#flex)] alignItems=[xs(#center)]>
+            <Typography.Title level=#6> {user.username->s} </Typography.Title>
+            <Avatar
+              image={switch user.image {
+              | "" => None
+              | image => Some(image)
+              }}
+            />
+          </Box>
         | Loading => <Typography.Paragraph> {`Loading...`->s} </Typography.Paragraph>
         | Error
         | DecodeError =>
-          <Typography.Paragraph> {`Something went wrong :(`->s} </Typography.Paragraph>
+          <Link to_=Signin> {`Sign in`->s} </Link>
         }}
       </Box>
     </Grid>

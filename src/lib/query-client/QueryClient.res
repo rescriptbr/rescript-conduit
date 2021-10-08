@@ -41,6 +41,10 @@ let get = (~url) => {
       },
     )
     ->then(response => {
+      switch response->Fetch.Response.status {
+      | 401 => LocalForage.clear()->ignore
+      | _ => ()
+      }
       switch response->Fetch.Response.ok {
       | false => Promise.reject(QueryClientError(response))
       | true => Promise.resolve(response)

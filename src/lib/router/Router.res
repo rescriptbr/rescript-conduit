@@ -2,6 +2,7 @@ type routes =
   | Home
   | Signin
   | Signup
+  | UserSettings
   | NotFound
 
 let toString = route =>
@@ -9,6 +10,7 @@ let toString = route =>
   | Home => "/"
   | Signin => "/signin"
   | Signup => "/signup"
+  | UserSettings => "/settings"
   | NotFound => "/not-found"
   }
 
@@ -17,6 +19,7 @@ let routeFromUrl = (url: RescriptReactRouter.url) => {
   | list{} => Home
   | list{"signin"} => Signin
   | list{"signup"} => Signup
+  | list{"settings"} => UserSettings
   | _ => NotFound
   }
 }
