@@ -1,42 +1,7 @@
 open Render
 open AncestorConduit
 
-module Styles = {
-  open Emotion.Raw
-
-  let input = (~error) =>
-    css(
-      `
-    height: 5.6rem;
-    width: 100%;
-    background: ${Theme.Colors.lightBlue1};
-    font-size: 2.0rem;
-    border-style: none;
-    border-radius: ${Theme.Radius.small};
-    padding: 0 ${Theme.Spacing.make(3.)};
-    box-sizing: border-box;
-    color: ${Theme.Colors.black};
-    outline-style: none;
-    transition: 300ms;
-    &:focus {
-      transition: 300ms;
-      box-shadow: ${switch error {
-        | None => `0px 0px 0px 2px ${Theme.Colors.blue}`
-        | Some(_) => ""
-        }};
-    }
-
-    box-shadow: ${switch error {
-        | None => "none"
-        | Some(_) => `0px 0px 0px 2px ${Theme.Colors.red}`
-        }};
-
-    &::placeholder: {
-      color: ${Theme.Colors.gray2};
-    }
-  `,
-    )
-}
+module Styles = Input_Styles
 
 @react.component
 let make = (
