@@ -1,5 +1,3 @@
-open Render
-
 GlobalStyles.includeStyles()
 
 let queryClient = ReactQuery.Provider.createClient()
@@ -10,7 +8,7 @@ module Main = {
     let route = Router.useRouter()
     <Layout>
       {switch route {
-      | Home => "Home..."->s
+      | Home => <Home />
       | UserSettings => <UserSettings />
       | _ => React.null
       }}

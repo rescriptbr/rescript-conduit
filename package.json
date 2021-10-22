@@ -21,6 +21,7 @@
     "lenses-ppx": "6.1.10",
     "localforage": "1.10.0",
     "postcss": "8.3.5",
+    "qs": "6.10.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-query": "3.19.2",
