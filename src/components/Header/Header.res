@@ -7,7 +7,10 @@ module Styles = {
   let header = css({
     "background": Theme.Colors.white,
     "boxShadow": "0px 1px 0px rgba(71, 123, 255, 0.1)",
-    "padding": `${Theme.Spacing.make(4.)} ${Theme.Spacing.make(8.)}`,
+    "padding": `0 ${Theme.Spacing.make(8.)}`,
+    "height": `11.6rem`,
+    "display": "flex",
+    "alignItems": "center",
   })
 }
 
@@ -41,20 +44,26 @@ let make = () => {
 
   <Box tag=#header className=Styles.header>
     <Grid justifyContent=[xs(#"space-between")]>
-      <Box columns=[xs(#3)]> <Box maxW=[xs(15.0->#rem)]> <Logo /> </Box> </Box>
+      <Box display=[xs(#flex)] alignItems=[xs(#center)] maxW=[xs(15.0->#rem)]>
+        <FramerMotion.Element initial={"opacity": 0, "x": -50} animate={"opacity": 1, "x": 0}>
+          <Logo />
+        </FramerMotion.Element>
+      </Box>
       <Box>
         {switch result {
         | Data(user) =>
-          <Box display=[xs(#flex)] alignItems=[xs(#center)]>
-            <Typography.Title level=#6> {user.username->s} </Typography.Title>
-            <Avatar
-              image={switch user.image {
-              | "" => None
-              | image => Some(image)
-              }}
-            />
-          </Box>
-        | Loading => <Typography.Paragraph> {`Loading...`->s} </Typography.Paragraph>
+          <FramerMotion.Element initial={"opacity": 0, "x": 50} animate={"opacity": 1, "x": 0}>
+            <Box display=[xs(#flex)] alignItems=[xs(#center)]>
+              <Typography.Title level=#6 noMargin=true> {user.username->s} </Typography.Title>
+              <Avatar
+                image={switch user.image {
+                | "" => None
+                | image => Some(image)
+                }}
+              />
+            </Box>
+          </FramerMotion.Element>
+        | Loading => React.null
         | Error
         | DecodeError =>
           <Link to_=Signin> {`Sign in`->s} </Link>
