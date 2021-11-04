@@ -37,7 +37,7 @@
     "vite:dev": "vite",
     "vite:build": "vite build",
     "vite:serve": "vite preview",
-    "rescript:watch": "rescript build -w",
+    "rescript:start": "rescript build -w",
     "rescript:build": "rescript build -with-deps",
     "rescript:clean": "rescript clean",
     "storybook": "start-storybook -p 6006 -s public",
