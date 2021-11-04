@@ -10,6 +10,7 @@ let tab = (~active) =>
   css({
     "listStyle": "none",
     "> button": {
+      "fontSize": "2.0rem",
       "transition": "200ms color",
       "padding": `${Theme.Spacing.make(1.)} ${Theme.Spacing.make(2.)}`,
       "borderRadius": Theme.Radius.small,

@@ -45,7 +45,7 @@ let make = () => {
         | Loading => React.null
         | Error
         | DecodeError =>
-          <Link to_=Signin> {`Sign in`->s} </Link>
+          <Button to_=Signin size=#sm> {`Sign in`->s} </Button>
         }}
       </Box>
     </Grid>

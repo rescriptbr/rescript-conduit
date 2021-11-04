@@ -18,7 +18,7 @@ let make = (~image, ~name, ~size=4.8->#rem) => {
         width=[xs(size)]
         height=[xs(size)]
         bgColor=[xs(Theme.Colors.blue->#hex)]>
-        {name->String.charAt(0)->s}
+        {name->String.charAt(0)->String.toUpperCase->s}
       </Base>
     | Some(src) =>
       <Base tag=#img borderRadius=[xs(3)] width=[xs(4.8->#rem)] height=[xs(4.8->#rem)] src />
