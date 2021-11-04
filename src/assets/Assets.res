@@ -9,3 +9,6 @@ external spinner: string = "spinner"
 
 @module("./assets.js")
 external logo: string = "logo"
+
+@module("./assets.js")
+external logoMinimal: string = "logoMinimal"
