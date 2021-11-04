@@ -36,6 +36,7 @@ module Base = Config.Base
 module Box = Config.Box
 module Text = Config.Typography
 module Grid = Config.Grid
+module Hidden = Config.Hidden
 
 let xs = v => #xs(v)
 let sm = v => #sm(v)
