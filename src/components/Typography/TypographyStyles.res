@@ -11,7 +11,7 @@ let title = (~level, ~color: string, ~align: align, ~noMargin) =>
     | #2 => "5.6rem"
     | #3 => "4.6rem"
     | #4 => "3.2rem"
-    | #5 => "2.8rem"
+    | #5 => "2.4rem"
     | #6 => "1.8rem"
     },
     "fontWeight": switch level {

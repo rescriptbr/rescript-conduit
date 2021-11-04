@@ -14,30 +14,6 @@ module Styles = {
   })
 }
 
-module Avatar = {
-  @react.component
-  let make = (~image) => {
-    <Box ml=[xs(2)]>
-      {switch image {
-      | None =>
-        <Base
-          fontSize=[xs(1.6->#rem)]
-          color=[xs(Theme.Colors.white->#hex)]
-          display=[xs(#flex)]
-          alignItems=[xs(#center)]
-          justifyContent=[xs(#center)]
-          borderRadius=[xs(3)]
-          width=[xs(4.8->#rem)]
-          height=[xs(4.8->#rem)]
-          bgColor=[xs(Theme.Colors.blue->#hex)]>
-          {`M`->s}
-        </Base>
-      | Some(src) =>
-        <Base tag=#img borderRadius=[xs(3)] width=[xs(4.8->#rem)] height=[xs(4.8->#rem)] src />
-      }}
-    </Box>
-  }
-}
 @react.component
 let make = () => {
   let result = UseMeHook.useMe()
@@ -55,12 +31,15 @@ let make = () => {
           <FramerMotion.Element initial={"opacity": 0, "x": 50} animate={"opacity": 1, "x": 0}>
             <Box display=[xs(#flex)] alignItems=[xs(#center)]>
               <Typography.Title level=#6 noMargin=true> {user.username->s} </Typography.Title>
-              <Avatar
-                image={switch user.image {
-                | "" => None
-                | image => Some(image)
-                }}
-              />
+              <Box ml=[xs(2)]>
+                <Avatar
+                  name=user.username
+                  image={switch user.image {
+                  | "" => None
+                  | image => Some(image)
+                  }}
+                />
+              </Box>
             </Box>
           </FramerMotion.Element>
         | Loading => React.null
