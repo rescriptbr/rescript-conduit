@@ -25,7 +25,7 @@ module PersonalForm = {
     <Card>
       <Box mb=[xs(2)]> <Input placeholder="Photo URL" /> </Box>
       <Box mb=[xs(2)]> <Input placeholder="Username" /> </Box>
-      <Box mb=[xs(2)]> <Input placeholder="Share about you" /> </Box>
+      <Box mb=[xs(2)]> <TextArea placeholder="Share about you" /> </Box>
       <Box display=[xs(#flex)] justifyContent=[xs(#"flex-end")]>
         <Box width=[xs(26.0->#rem)]> <Button block=true> {`Save`->s} </Button> </Box>
       </Box>

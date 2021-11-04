@@ -1,5 +1,5 @@
-open Render
 open AncestorConduit
+open Render
 
 module Styles = Input_Styles
 
@@ -10,7 +10,6 @@ let make = (
   ~onBlur=?,
   ~onChange=?,
   ~error=None,
-  ~type_=?,
   ~label=?,
   ~disabled=?,
 ) => {
@@ -27,7 +26,7 @@ let make = (
       </Base>
     | None => React.null
     }}
-    <input ?disabled ?type_ ?placeholder ?name ?onBlur ?onChange className={Styles.input(~error)} />
+    <textarea ?disabled ?placeholder ?name ?onBlur ?onChange className={Styles.textarea(~error)} />
     {switch error {
     | None => React.null
     | Some(message) =>
