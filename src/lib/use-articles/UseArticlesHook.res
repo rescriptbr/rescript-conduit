@@ -60,8 +60,6 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=20, ~offset=0, ()) =>
     queryOptions(~queryKey=`articles:${params}`, ~queryFn=_ => handleFetch(params), ()),
   )
 
-  Js.log(result)
-
   switch result {
   | {isLoading: true} => Loading
   | {isError: true} => Error

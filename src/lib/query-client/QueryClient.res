@@ -2,6 +2,17 @@ exception QueryClientError(Fetch.Response.t)
 
 let apiUrl = "https://conduit-api-fp.herokuapp.com/api"
 
+let validateRequestError = response => {
+  switch response->Fetch.Response.status {
+  | 401 => LocalForage.clear()->ignore
+  | _ => ()
+  }
+  switch response->Fetch.Response.ok {
+  | false => Promise.reject(QueryClientError(response))
+  | true => Promise.resolve(response)
+  }
+}
+
 let post = (~url, body) => {
   open Promise
 
@@ -10,7 +21,10 @@ let post = (~url, body) => {
       `${apiUrl}${url}`,
       {
         "method": "POST",
-        "body": Js.Json.stringifyAny(body),
+        "body": switch body {
+        | Some(body) => Js.Json.stringifyAny(body)
+        | None => Some("{}")
+        },
         "headers": {
           "Content-Type": "application/json",
           "Authorization": switch token {
@@ -19,7 +33,9 @@ let post = (~url, body) => {
           },
         },
       },
-    )->then(response => Fetch.Response.json(response))
+    )
+    ->then(validateRequestError)
+    ->then(response => Fetch.Response.json(response))
   })
 }
 
@@ -40,16 +56,7 @@ let get = (~url) => {
         },
       },
     )
-    ->then(response => {
-      switch response->Fetch.Response.status {
-      | 401 => LocalForage.clear()->ignore
-      | _ => ()
-      }
-      switch response->Fetch.Response.ok {
-      | false => Promise.reject(QueryClientError(response))
-      | true => Promise.resolve(response)
-      }
-    })
+    ->then(validateRequestError)
     ->then(response => Fetch.Response.json(response))
   })
 }
