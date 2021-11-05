@@ -13,7 +13,7 @@ type hookResult = {
 }
 
 let handleFetch = (payload: signupPayload) =>
-  QueryClient.post(~url="/users", payload)
+  QueryClient.post(~url="/users", Some(payload))
   //
   ->Promise.then(response => {
     response->response_decode->Promise.resolve

@@ -17,7 +17,7 @@ type hookResult = {
 let handleFetch = (payload: signinPayload) => {
   open Promise
 
-  QueryClient.post(~url="/users/login", payload)->thenResolve(json => json->response_decode)
+  QueryClient.post(~url="/users/login", Some(payload))->thenResolve(json => json->response_decode)
 }
 
 let useSignin = () => {
