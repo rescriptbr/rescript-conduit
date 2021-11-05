@@ -7,7 +7,6 @@ module Styles = {
   let header = css({
     "background": Theme.Colors.white,
     "boxShadow": "0px 1px 0px rgba(71, 123, 255, 0.1)",
-    "padding": `0 ${Theme.Spacing.make(8.)}`,
     "height": `11.6rem`,
     "display": "flex",
     "alignItems": "center",
@@ -18,12 +17,14 @@ module Styles = {
 let make = () => {
   let result = UseMeHook.useMe()
 
-  <Box tag=#header className=Styles.header>
+  <Box tag=#header className=Styles.header p=[xs(4), md(8)]>
     <Grid justifyContent=[xs(#"space-between")]>
       <Box display=[xs(#flex)] alignItems=[xs(#center)] maxW=[xs(15.0->#rem)]>
         <FramerMotion.Element initial={"opacity": 0, "x": -50} animate={"opacity": 1, "x": 0}>
           <Hidden on=[xs(true), md(false)]> <Logo /> </Hidden>
-          <Hidden on=[xs(false), md(true)]> <Logo variant=#minimal /> </Hidden>
+          <Hidden on=[xs(false), md(true)]>
+            <Box width=[xs(4.2->#rem)] height=[xs(4.2->#rem)]> <Logo variant=#minimal /> </Box>
+          </Hidden>
         </FramerMotion.Element>
       </Box>
       <Box>

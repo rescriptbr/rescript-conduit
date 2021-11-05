@@ -1,15 +1,14 @@
-type variant = [#default | #white | #minimal]
+open AncestorConduit
 
-let logo = Emotion.css({
-  "width": "100%",
-})
+type variant = [#default | #white | #minimal]
 
 @react.component
 let make = (~variant: variant=#default) => {
   <Link.Unstyled to_=Home>
     <div className="container">
-      <img
-        className=logo
+      <Base
+        tag=#img
+        width=[xs(100.0->#pct)]
         src={switch variant {
         | #default => Assets.logo
         | #white => Assets.logoWhite
