@@ -18,7 +18,7 @@ module Make = (Maker: Interface) => {
     ~className=?,
     ~width: Ancestor_CssTypes.Length.t=#rem(1.6),
     ~height: Ancestor_CssTypes.Length.t=#rem(1.6),
-    ~color: string=Theme.Colors.gray1,
+    ~color: string=Theme.Colors2.gray1,
   ) => {
     React.createElement(
       Maker.icon,
@@ -39,5 +39,15 @@ module Like = Make({
 
 module LikeFilled = Make({
   @module("./svgs/like-filled.svg")
+  external icon: React.component<{..}> = "ReactComponent"
+})
+
+module ChevronRight = Make({
+  @module("./svgs/chevron-right.svg")
+  external icon: React.component<{..}> = "ReactComponent"
+})
+
+module ChevronLeft = Make({
+  @module("./svgs/chevron-left.svg")
   external icon: React.component<{..}> = "ReactComponent"
 })
