@@ -3,7 +3,7 @@ open Emotion
 module Styles = {
   let link = css({
     "fontFamily": Theme.fontFamily,
-    "color": Theme.Colors.blue,
+    "color": Theme.Colors2.blue,
     "fontSize": "2.0rem",
     "position": "relative",
     "cursor": "pointer",
@@ -17,7 +17,7 @@ module Styles = {
       "content": `" "`,
       "height": "2px",
       "width": "100%",
-      "background": Theme.Colors.blue,
+      "background": Theme.Colors2.blue,
       "position": "absolute",
       "bottom": "-1px",
       "left": 0,
@@ -25,7 +25,7 @@ module Styles = {
     },
     "&:hover": {
       "transition": "100ms color",
-      "color": Theme.Colors.white,
+      "color": Theme.Colors2.white,
       "&:after": {"transition": "100ms height", "height": "100%"},
     },
   })

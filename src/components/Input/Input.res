@@ -20,7 +20,7 @@ let make = (
       <Base
         tag=#label
         fontSize=[xs(2.->#rem)]
-        color=[xs(Theme.Colors.Ancestor.black)]
+        color=[xs(Theme.Colors2.Ancestor.black)]
         display=[xs(#block)]
         mb=[xs(1)]>
         {label->s}
@@ -33,7 +33,7 @@ let make = (
     | Some(message) =>
       <Base
         tag=#span
-        color=[xs(Theme.Colors.Ancestor.red)]
+        color=[xs(Theme.Colors2.Ancestor.red)]
         fontWeight=[xs(#600)]
         fontSize=[xs(1.20->#rem)]
         display=[xs(#block)]

@@ -9,7 +9,7 @@ module Title = {
   let make = (
     ~level: level=#1,
     ~align=#left,
-    ~color=Theme.Colors.black,
+    ~color=Theme.Colors2.black,
     ~noMargin=false,
     ~className as customClass="",
     ~children,
@@ -36,7 +36,7 @@ module Paragraph = {
     ~level: body=#1,
     ~noMargin=false,
     ~align=#left,
-    ~color: string=Theme.Colors.gray1,
+    ~color: string=Theme.Colors2.gray1,
     ~children,
   ) => {
     <p className={paragraph(~level, ~align, ~color, ~noMargin)}> children </p>

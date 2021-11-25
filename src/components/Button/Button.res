@@ -10,9 +10,9 @@ module Styles = {
   let button = (~block, ~loading, ~size) =>
     css(
       `
-    background: ${Theme.Colors.blue};
+    background: ${Theme.Colors2.blue};
     border: 0;
-    color: ${Theme.Colors.white};
+    color: ${Theme.Colors2.white};
     min-width: ${block ? "100%" : "12rem"};
     height: ${switch size {
         | #lg => `5.5rem`
@@ -31,7 +31,7 @@ module Styles = {
 
     &:hover {
       transition: 200ms;
-      background: ${Theme.Colors.blue2};
+      background: ${Theme.Colors2.blue2};
     }
 
     &:disabled {

@@ -5,7 +5,7 @@ module Styles = {
   open Emotion
 
   let header = css({
-    "background": Theme.Colors.white,
+    "background": Theme.Colors2.white,
     "boxShadow": "0px 1px 0px rgba(71, 123, 255, 0.1)",
     "height": `11.6rem`,
     "display": "flex",

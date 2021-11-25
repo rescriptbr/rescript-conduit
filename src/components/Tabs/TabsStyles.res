@@ -14,8 +14,8 @@ let tab = (~active) =>
       "transition": "200ms color",
       "padding": `${Theme.Spacing.make(1.)} ${Theme.Spacing.make(2.)}`,
       "borderRadius": Theme.Radius.small,
-      "background": active ? Theme.Colors.blueGradient : "transparent",
-      "color": active ? Theme.Colors.white : Theme.Colors.gray1,
+      "background": active ? Theme.Colors2.blueGradient : "transparent",
+      "color": active ? Theme.Colors2.white : Theme.Colors2.gray1,
       "border": "none",
       "fontFamily": Theme.fontFamily,
       "cursor": "pointer",
@@ -23,7 +23,7 @@ let tab = (~active) =>
     "&:hover": {
       "> button": {
         "transition": "200ms color",
-        "color": active ? Theme.Colors.white : Theme.Colors.blue,
+        "color": active ? Theme.Colors2.white : Theme.Colors2.blue,
       },
     },
   })

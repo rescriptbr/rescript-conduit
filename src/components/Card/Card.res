@@ -1,7 +1,7 @@
 open Emotion
 
 let card = css({
-  "background": Theme.Colors.lightBlue1,
+  "background": Theme.Colors2.lightBlue1,
   "borderRadius": Theme.Radius.medium,
   "padding": "3.2rem",
 })

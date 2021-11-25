@@ -24,7 +24,7 @@ module LikeButton = {
         tag=#span
         display=[xs(#block)]
         ml=[xs(1)]
-        color=[xs(Theme.Colors.Ancestor.gray1)]
+        color=[xs(Theme.Colors2.Ancestor.gray1)]
         fontSize=[xs(1.6->#rem)]
         fontWeight=[xs(#400)]>
         {count->React.int}
@@ -46,7 +46,7 @@ let make = (~title, ~body, ~updatedAt, ~favoritesCount, ~author: UseArticlesHook
           letterSpacing=[xs(-0.03->#em)]
           lineHeight=[xs(3.1->#rem)]
           fontSize=[xs(2.4->#rem)]
-          color=[xs(Theme.Colors.Ancestor.black)]>
+          color=[xs(Theme.Colors2.Ancestor.black)]>
           {title->s}
         </Text>
         <Text
@@ -56,7 +56,7 @@ let make = (~title, ~body, ~updatedAt, ~favoritesCount, ~author: UseArticlesHook
           m=[xs(0)]
           lineHeight=[xs(3.1->#rem)]
           fontSize=[xs(1.8->#rem)]
-          color=[xs(Theme.Colors.Ancestor.gray1)]>
+          color=[xs(Theme.Colors2.Ancestor.gray1)]>
           {body->s}
         </Text>
       </Box>
@@ -70,12 +70,12 @@ let make = (~title, ~body, ~updatedAt, ~favoritesCount, ~author: UseArticlesHook
           }}
         />
         <Box ml=[xs(2)]>
-          <Typography.Paragraph noMargin=true color=Theme.Colors.black level=#3>
+          <Typography.Paragraph noMargin=true color=Theme.Colors2.black level=#3>
             {author.username->s}
           </Typography.Paragraph>
           <Text
             tag=#span
-            color=[xs(Theme.Colors.Ancestor.gray1)]
+            color=[xs(Theme.Colors2.Ancestor.gray1)]
             fontSize=[xs(1.4->#rem)]
             lineHeight=[xs(1.8->#rem)]>
             {updatedAt->Js.Date.fromString->DateFns.format("MMM dd, yyyy")->s}
