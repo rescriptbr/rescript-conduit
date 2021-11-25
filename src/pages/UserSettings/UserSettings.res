@@ -13,7 +13,7 @@ module Card = {
   @react.component
   let make = (~children) => {
     <Box
-      className=Styles.card p=[xs(4)] borderRadius=[xs(1)] bgColor=[xs(Theme.Colors.white->#hex)]>
+      className=Styles.card p=[xs(4)] borderRadius=[xs(1)] bgColor=[xs(Theme.Colors2.white->#hex)]>
       {children}
     </Box>
   }

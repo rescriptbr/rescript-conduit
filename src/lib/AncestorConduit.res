@@ -37,6 +37,7 @@ module Box = Config.Box
 module Text = Config.Typography
 module Grid = Config.Grid
 module Hidden = Config.Hidden
+module Color = Config.CssTypes.Color
 
 let xs = v => #xs(v)
 let sm = v => #sm(v)

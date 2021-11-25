@@ -16,19 +16,19 @@ let make = () => {
       position=[xs(#relative)]
       columns=[xs(#6)]
       overflow=[xs(#hidden)]
-      bgColor=[xs(Theme.Colors.Ancestor.blue)]>
+      bgColor=[xs(Theme.Colors2.Ancestor.blue)]>
       <Box flexGrow=[xs(#num(1.0))] width=[xs(15.0->#rem)]>
         <Animations.FadeIn delay=0.1> <Logo variant=#white /> </Animations.FadeIn>
       </Box>
       <Box flexGrow=[xs(#num(3.0))] pt=[xs(4)]>
         <Animations.FadeIn delay=0.2>
-          <Typography.Title level=#3 color=Theme.Colors.white>
+          <Typography.Title level=#3 color=Theme.Colors2.white>
             {`A place to share knowledge`->s}
           </Typography.Title>
         </Animations.FadeIn>
         <Animations.FadeIn delay=0.4>
           <Typography.Paragraph
-            level=#1 color={Theme.Colors.white->Polished.Color.transparentize(~amount=0.4)}>
+            level=#1 color={Theme.Colors2.white->Polished.Color.transparentize(~amount=0.4)}>
             {`Where good ideas find you.`->s}
           </Typography.Paragraph>
         </Animations.FadeIn>

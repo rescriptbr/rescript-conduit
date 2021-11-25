@@ -19,8 +19,8 @@ let includeStyles = () =>
   }
 
   ::selection {
-    background: ${Theme.Colors.blue};
-    color: ${Theme.Colors.white};
+    background: ${Theme.Colors2.blue};
+    color: ${Theme.Colors2.white};
   }
 `,
   )

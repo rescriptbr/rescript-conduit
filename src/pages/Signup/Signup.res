@@ -18,14 +18,14 @@ let make = () => {
       position=[xs(#relative)]
       columns=[xs(#6)]
       overflow=[xs(#hidden)]
-      bgColor=[xs(Theme.Colors.Ancestor.blue)]>
+      bgColor=[xs(Theme.Colors2.Ancestor.blue)]>
       <Box flexGrow=[xs(#num(1.0))] width=[xs(15.0->#rem)]> <Logo variant=#white /> </Box>
       <Box flexGrow=[xs(#num(3.0))] pt=[xs(4)]>
-        <Typography.Title level=#3 color=Theme.Colors.white>
+        <Typography.Title level=#3 color=Theme.Colors2.white>
           {`A place to share knowledge`->s}
         </Typography.Title>
         <Typography.Paragraph
-          level=#1 color={Theme.Colors.white->Polished.Color.transparentize(~amount=0.4)}>
+          level=#1 color={Theme.Colors2.white->Polished.Color.transparentize(~amount=0.4)}>
           {`Where good ideas find you.`->s}
         </Typography.Paragraph>
       </Box>
