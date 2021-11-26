@@ -2,10 +2,10 @@
   <img src="./static/github-cover.png" />
   <br />
   <br />
-  <a target="_blank" href="https://github.com/rescripbr/rescript-conduit"> Live Demo </a> ●
-  <a target="_blank" href="https://github.com/gothinkster/realworld"> Official Repository </a> ●
-  <a target="_blank" href="https://www.figma.com/file/zC8MJMVbnWGvHNYkBWe1kI/Conduit?node-id=1%3A46"> Figma </a> ●
-  <a target="_blank" href="https://rescript-lang.org/"> Official ReScript Docs </a> ●
+  <a target="_blank" href="https://github.com/rescripbr/rescript-conduit"> Live Demo </a> //
+  <a target="_blank" href="https://github.com/gothinkster/realworld"> Official Repository </a> //
+  <a target="_blank" href="https://www.figma.com/file/zC8MJMVbnWGvHNYkBWe1kI/Conduit?node-id=1%3A46"> Figma </a> //
+  <a target="_blank" href="https://rescript-lang.org/"> Official ReScript Docs </a> //
   <a target="_blank" href="https://github.com/rescripbr"> ReScript Brazil Community </a>
 </p>
 
