@@ -7,7 +7,7 @@ module Styles = {
   let header = css({
     "background": Theme.Colors2.white,
     "boxShadow": "0px 1px 0px rgba(71, 123, 255, 0.1)",
-    "height": `11.6rem`,
+    "height": `9.2rem`,
     "display": "flex",
     "alignItems": "center",
   })

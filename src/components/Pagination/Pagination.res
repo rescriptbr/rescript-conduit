@@ -12,7 +12,31 @@ module Styles = {
   })
 
   let pageItem = css({
-    "border": "solid 1px red",
+    "display": "flex",
+    "cursor": "pointer",
+    "alignItems": "center",
+    "justifyContent": "center",
+    "height": "2.8rem",
+    "width": "2.8rem",
+    "margin": "0 0.6rem",
+    "fontSize": "1.6rem",
+    "color": Theme.Colors.neutral["200"],
+    "borderRadius": Theme.Radius.small,
+    "&:hover": {
+      "transition": "300ms",
+      "color": Theme.Colors.white,
+      "backgroundColor": Theme.Colors.primary["100"],
+    },
+  })
+
+  let activePageItem = css({
+    "backgroundColor": Theme.Colors.primary["400"],
+    "color": Theme.Colors.white,
+    "&:hover": {
+      "transition": "300ms",
+      "color": Theme.Colors.white,
+      "backgroundColor": Theme.Colors.primary["500"],
+    },
   })
 
   let pageButton = css({
@@ -46,15 +70,19 @@ module PageButton = {
 }
 
 module ReactPaginate = {
-  type event
+  type onPageChangeEvent = {selected: int}
   @react.component @module("react-paginate")
   external make: (
+    ~forcePage: int,
     ~className: string,
-    ~onPageChange: event => unit,
+    ~onPageChange: onPageChangeEvent => unit,
+    ~onPageActive: 'a => unit=?,
     ~pageLinkClassName: string,
+    ~activeLinkClassName: string,
     ~breakLabel: React.element,
-    ~pageCount: int,
+    ~breakLinkClassName: string,
     ~nextLabel: React.element,
+    ~pageCount: int,
     ~previousLabel: React.element,
     ~pageRangeDisplayed: int,
     ~renderOnZeroPageCount: React.element,
@@ -62,16 +90,36 @@ module ReactPaginate = {
 }
 
 @react.component
-let make = (~count, ~onPageChange) => {
+let make = (~limit, ~count, ~activePage, ~onPageChange) => {
   <ReactPaginate
     className=Styles.container
     previousLabel={<PageButton disabled=true icon=module(Icons.ChevronLeft) />}
     nextLabel={<PageButton icon=module(Icons.ChevronRight) />}
     breakLabel={`...`->s}
+    breakLinkClassName=Styles.pageItem
     pageLinkClassName=Styles.pageItem
-    pageCount={count}
+    activeLinkClassName=Styles.activePageItem
+    pageCount={Js.Math.ceil_int(count->Js.Int.toFloat /. limit->Js.Int.toFloat)}
     onPageChange
     pageRangeDisplayed={3}
+    forcePage=activePage
     renderOnZeroPageCount={React.null}
   />
+}
+
+type pagination = {
+  offset: int,
+  limit: int,
+}
+
+let usePagination = (~offset=0, ~limit=20, ()) => {
+  let (pagination, setState) = React.useState(_ => {offset: offset, limit: limit})
+
+  let handleChangePage = (event: ReactPaginate.onPageChangeEvent) => {
+    setState(pagination => {
+      ...pagination,
+      offset: event.selected,
+    })
+  }
+  (pagination, handleChangePage)
 }

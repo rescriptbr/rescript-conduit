@@ -29,7 +29,7 @@ type apiResponse = {
 }
 
 type hookResult =
-  | Data(array<article>)
+  | Data(array<article>, int)
   | Loading
   | Empty
   | Error
@@ -47,25 +47,36 @@ let handleFetch = params => {
   QueryClient.get(~url=`/articles?${params}`)->thenResolve(apiResponse_decode)
 }
 
-let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=20, ~offset=0, ()) => {
+let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => {
+  let (pagination, handlePageChange) = Pagination.usePagination(~limit, ~offset, ())
+
   let params = Qs.stringify({
     "author": author,
     "tag": tag,
     "favorited": favorited,
-    "limit": limit,
-    "offset": offset,
+    "limit": pagination.limit,
+    "offset": pagination.offset,
   })
 
-  let result = useQuery(
-    queryOptions(~queryKey=`articles:${params}`, ~queryFn=_ => handleFetch(params), ()),
+  let fetchResult = useQuery(
+    queryOptions(
+      ~queryKey=`articles:${params}`,
+      ~refetchOnWindowFocus=ReactQuery_Utils.refetchOnWindowFocus(#bool(false)),
+      ~queryFn=_ => handleFetch(params),
+      (),
+    ),
   )
 
-  switch result {
+  Js.log(fetchResult)
+
+  let response = switch fetchResult {
   | {isLoading: true} => Loading
   | {isError: true} => Error
   | {data: Some(Error(_))} => DecodeError
   | {data: Some(Ok({articles: []}))} => Empty
-  | {data: Some(Ok({articles}))} => Data(articles)
+  | {data: Some(Ok({articles, articlesCount}))} => Data(articles, articlesCount)
   | _ => Empty
   }
+
+  (response, pagination, handlePageChange)
 }
