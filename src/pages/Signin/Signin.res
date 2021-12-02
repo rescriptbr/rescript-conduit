@@ -16,7 +16,7 @@ let make = () => {
       position=[xs(#relative)]
       columns=[xs(#6)]
       overflow=[xs(#hidden)]
-      bgColor=[xs(Theme.Colors2.Ancestor.blue)]>
+      bgColor=[xs(Theme.TypedColors.primary["400"])]>
       <Box flexGrow=[xs(#num(1.0))] width=[xs(15.0->#rem)]>
         <Animations.FadeIn delay=0.1> <Logo variant=#white /> </Animations.FadeIn>
       </Box>

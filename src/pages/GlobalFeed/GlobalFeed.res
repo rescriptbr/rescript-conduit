@@ -8,7 +8,6 @@ module ContentLoader = {
       speed={2}
       width=`100%`
       height=`648`
-      borderRadius=Theme.Radius.medium
       backgroundColor={Theme.Colors.neutral["50"]}
       foregroundColor={Theme.Colors.neutral["100"]}>
       <rect x="0" y="0" rx=Theme.Radius.small ry=Theme.Radius.small width="100%" height="200" />
@@ -17,8 +16,6 @@ module ContentLoader = {
     </ContentLoader>
   }
 }
-
-let active = Emotion.css({"background": "red"})
 
 @react.component
 let make = () => {

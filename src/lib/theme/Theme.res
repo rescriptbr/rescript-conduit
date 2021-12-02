@@ -12,20 +12,6 @@ module Colors2 = {
 
   let white = "#fff"
   let black = "#14103D"
-
-  module Ancestor = {
-    let blue = #hex(blue)
-    let lightBlue1 = #hex(lightBlue1)
-
-    let red = #hex(red)
-    let redLight = #hex(redLight)
-
-    let gray1 = #hex(gray1)
-    let gray2 = #hex(gray2)
-
-    let black = #hex(black)
-    let white = #hex(white)
-  }
 }
 
 module Palette = {
