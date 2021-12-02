@@ -67,8 +67,6 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => 
     ),
   )
 
-  Js.log(fetchResult)
-
   let response = switch fetchResult {
   | {isLoading: true} => Loading
   | {isError: true} => Error

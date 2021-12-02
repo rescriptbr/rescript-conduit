@@ -54,6 +54,10 @@ module Styles = {
     "transition": "300ms",
     "&:disabled": {
       "background": Theme.Colors.primary["100"],
+      "cursor": "not-allowed",
+      "&:hover": {
+        "background": Theme.Colors.primary["100"],
+      },
     },
     "&:hover": {
       "background": Theme.Colors.primary["500"],
@@ -91,15 +95,19 @@ module ReactPaginate = {
 
 @react.component
 let make = (~limit, ~count, ~activePage, ~onPageChange) => {
+  let pageCount = Js.Math.ceil_int(count->Js.Int.toFloat /. limit->Js.Int.toFloat)
+
   <ReactPaginate
     className=Styles.container
-    previousLabel={<PageButton disabled=true icon=module(Icons.ChevronLeft) />}
-    nextLabel={<PageButton icon=module(Icons.ChevronRight) />}
+    previousLabel={<PageButton disabled={activePage === 0} icon=module(Icons.ChevronLeft) />}
+    nextLabel={<PageButton
+      disabled={activePage === pageCount - 1} icon=module(Icons.ChevronRight)
+    />}
     breakLabel={`...`->s}
     breakLinkClassName=Styles.pageItem
     pageLinkClassName=Styles.pageItem
     activeLinkClassName=Styles.activePageItem
-    pageCount={Js.Math.ceil_int(count->Js.Int.toFloat /. limit->Js.Int.toFloat)}
+    pageCount
     onPageChange
     pageRangeDisplayed={3}
     forcePage=activePage
