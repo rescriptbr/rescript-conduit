@@ -1,7 +1,7 @@
 open Render
 open AncestorConduit
 
-module LikeButton = {
+module FavoriteButton = {
   let button = Emotion.css({
     "background": "none",
     "border": "none",
@@ -9,9 +9,10 @@ module LikeButton = {
   })
 
   @react.component
-  let make = (~count) => {
+  let make = (~count, ~favorited, ~onClick) => {
     <Box
       tag=#button
+      onClick
       className=button
       right=[xs(3.2->#rem)]
       top=[xs(3.2->#rem)]
@@ -19,12 +20,23 @@ module LikeButton = {
       display=[xs(#flex)]
       alignItems=[xs(#center)]
       justifyContent=[xs(#center)]>
-      <Icons.Like width=#px(22) height=#px(22) />
+      {switch favorited {
+      | false => <Icons.Like width=#px(22) height=#px(22) />
+      | true =>
+        <Icons.LikeFilled width=#px(22) height=#px(22) color={Theme.Colors.primary["400"]} />
+      }}
       <Text
         tag=#span
         display=[xs(#block)]
         ml=[xs(1)]
-        color=[xs(Theme.TypedColors.neutral["200"])]
+        color=[
+          xs(
+            switch favorited {
+            | false => Theme.TypedColors.neutral["200"]
+            | true => Theme.TypedColors.primary["400"]
+            },
+          ),
+        ]
         fontSize=[xs(1.6->#rem)]
         fontWeight=[xs(#400)]>
         {count->React.int}
@@ -34,10 +46,18 @@ module LikeButton = {
 }
 
 @react.component
-let make = (~title, ~body, ~updatedAt, ~favoritesCount, ~author: UseArticlesHook.author) => {
+let make = (
+  ~title,
+  ~body,
+  ~updatedAt,
+  ~favoritesCount,
+  ~favorited,
+  ~onFavorite,
+  ~author: UseArticlesHook.author,
+) => {
   <Box mb=[xs(3)] position=[xs(#relative)]>
     <Card>
-      <LikeButton count=favoritesCount />
+      <FavoriteButton count=favoritesCount onClick=onFavorite favorited />
       <Box>
         <Text
           tag=#h2

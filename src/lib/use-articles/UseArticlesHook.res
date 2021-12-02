@@ -39,13 +39,20 @@ module Qs = {
   @module("qs") external stringify: {..} => string = "stringify"
 }
 
-let {useQuery, queryOptions} = module(ReactQuery)
+let {useQuery, useMutation, mutationOptions, queryOptions} = module(ReactQuery)
 
 let handleFetch = params => {
   open Promise
 
   QueryClient.get(~url=`/articles?${params}`)->thenResolve(apiResponse_decode)
 }
+
+let handleFavorite = (slug: string) =>
+  QueryClient.post(~url=`/articles/${slug}/favorite`, None)
+  //
+  ->Promise.thenResolve(a => {
+    Js.log(a)
+  })
 
 let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => {
   let (pagination, handlePageChange) = Pagination.usePagination(~limit, ~offset, ())
@@ -67,6 +74,21 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => 
     ),
   )
 
+  let onFavoriteSuccess = (_, _, _) => {
+    fetchResult.refetch({
+      throwOnError: false,
+      cancelRefetch: false,
+    })
+  }
+
+  let {mutate} = useMutation(
+    mutationOptions(~mutationKey=``, ~onSuccess=onFavoriteSuccess, ~mutationFn=handleFavorite, ()),
+  )
+
+  let favoriteArticle = (slug: string) => {
+    mutate(. slug, None)
+  }
+
   let response = switch fetchResult {
   | {isLoading: true} => Loading
   | {isError: true} => Error
@@ -76,5 +98,5 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => 
   | _ => Empty
   }
 
-  (response, pagination, handlePageChange)
+  (response, pagination, handlePageChange, favoriteArticle)
 }

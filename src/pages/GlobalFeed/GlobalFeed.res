@@ -19,7 +19,7 @@ module ContentLoader = {
 
 @react.component
 let make = () => {
-  let (result, pagination, handlePageChange) = UseArticlesHook.useArticles()
+  let (result, pagination, handlePageChange, favoriteArticle) = UseArticlesHook.useArticles()
 
   <Box>
     <Grid pt=[xs(4)]>
@@ -34,6 +34,8 @@ let make = () => {
                 favoritesCount=article.favoritesCount
                 updatedAt=article.updatedAt
                 author=article.author
+                favorited=article.favorited
+                onFavorite={_ => favoriteArticle(article.slug)}
               />
             })}
             <Box display=[xs(#flex)] justifyContent=[xs(#"flex-end")]>

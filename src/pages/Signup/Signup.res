@@ -39,6 +39,7 @@ let make = () => {
       />
     </Box>
     <Box
+      bgColor=[xs(Theme.TypedColors.background)]
       tag=#form
       onSubmit={event => {
         ReactEvent.Synthetic.preventDefault(event)
