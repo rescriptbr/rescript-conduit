@@ -15,6 +15,7 @@
   ],
   "suffix": ".bs.js",
   "bs-dependencies": [
+    "@portolab/rescript-toolkit",
     "decco",
     "@rescript/react",
     "@rescriptbr/ancestor",
@@ -26,5 +27,6 @@
   "ppx-flags": ["decco/ppx", "lenses-ppx/ppx"],
   "warnings": {
     "number": "-44"
-  }
+  },
+  "bsc-flags": ["-bs-g", "-bs-super-errors"]
 }
