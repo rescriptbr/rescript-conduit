@@ -1,3 +1,5 @@
+open ReScriptToolkit
+
 @decco
 type author = {
   bio: string,
@@ -47,6 +49,25 @@ let handleFetch = params => {
   QueryClient.get(~url=`/articles?${params}`)->thenResolve(apiResponse_decode)
 }
 
+let updateArticlesBySlug = (slug: string, article: article) =>
+  switch article.slug === slug {
+  | false => article
+  | true => {
+      ...article,
+      favorited: !article.favorited,
+      favoritesCount: switch article.favorited {
+      | false => article.favoritesCount + 1
+      | true => article.favoritesCount - 1
+      },
+    }
+  }
+
+let optionFromResult = result =>
+  switch result {
+  | Ok(response) => Some(response)
+  | Error(_) => None
+  }
+
 let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => {
   let queryClient = ReactQuery.useQueryClient()
   let (pagination, handlePageChange) = Pagination.usePagination(~limit, ~offset, ())
@@ -59,58 +80,40 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => 
     "offset": pagination.offset,
   })
 
+  let queryKey = `articles:${params}`
+
   let fetchResult = useQuery(
     queryOptions(
-      ~queryKey=`articles:${params}`,
+      ~queryKey,
       ~refetchOnWindowFocus=ReactQuery_Utils.refetchOnWindowFocus(#bool(false)),
       ~queryFn=_ => handleFetch(params),
       (),
     ),
   )
 
-  let onFavoriteSuccess = () => {
-    fetchResult.refetch({
-      throwOnError: false,
-      cancelRefetch: false,
-    })->ignore
-  }
-
   let (favoriteMutation, unfavoriteMutation) = FavoriteArticleHook.useFavorite(
     ~onMutate=slug => {
-      let maybeArticles: Belt.Result.t<apiResponse, string> = queryClient.getQueryData(.
-        `articles:${params}`,
-      )
+      let maybeResponse: option<
+        Belt.Result.t<apiResponse, Decco.decodeError>,
+      > = queryClient.getQueryData(. queryKey)
 
-      Js.log(
-        switch maybeArticles {
-        | Error(_) => ()
-        | Ok(response) => Js.log(response)
-        },
-      )
-      /* switch maybeArticles { */
-      /* | None => Js.log(`None`) */
-      /* | Some(response) => */
-      /* switch response { */
-      /* | None => Js.log(`None`) */
-      /* | Some(response2) => Js.log(Obj.magic(response2)["_0"]) */
-      /* } */
-      /* } */
+      maybeResponse
+      ->Belt.Option.flatMap(optionFromResult)
+      ->Belt.Option.map(response => {
+        let updatedArticles = response.articles->Array.map(updateArticlesBySlug(slug))
+        let updatedResponse = {...response, articles: updatedArticles}
 
-      /* let updatedArticles = maybeArticles->Belt.Option.map(response => { */
-      /* response.articles->Js.Array2.map(article => */
-      /* switch article.slug === slug { */
-      /* | false => article */
-      /* | true => {...article, favorited: !article.favorited} */
-      /* } */
-      /* ) */
-      /* }) */
-      /* Js.log(updatedArticles) */
-      onFavoriteSuccess()
-      Promise.resolve(`Result...`)
+        queryClient.setQueryData(. queryKey, Ok(updatedResponse))->ignore
+
+        response
+      })
+      ->Promise.resolve
     },
-    ~onError=(_, _, maybeContext) => {
-      Js.log(maybeContext)
-
+    ~onError=(_, _, maybeValue) => {
+      switch maybeValue {
+      | None => ()
+      | Some(response) => queryClient.setQueryData(. queryKey, Ok(response))->ignore
+      }
       Promise.resolve()
     },
   )

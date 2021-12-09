@@ -37,11 +37,7 @@ type mutationOptions<
     Js.Nullable.t<'mutationContext>,
   ) => Js.Promise.t<unit>,
   @optional
-  onError: (
-    'mutationError,
-    'mutationVariables,
-    Js.Nullable.t<'mutationContext>,
-  ) => Js.Promise.t<unit>,
+  onError: ('mutationError, 'mutationVariables, 'mutationContext) => Js.Promise.t<unit>,
   @optional
   onSettled: (
     'mutationData,

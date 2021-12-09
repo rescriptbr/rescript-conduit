@@ -156,8 +156,8 @@ type queryClient<'queryKey, 'queryData, 'queryError, 'pageParams> = {
     'queryError,
     'pageParams,
   > => Js.Promise.t<unit>,
-  getQueryData: (. 'queryKey) => 'queryData,
-  setQueryData: (. 'queryKey, option<'queryData>) => 'queryData,
+  getQueryData: (. 'queryKey) => option<'queryData>,
+  setQueryData: (. 'queryKey, 'queryData) => 'queryData,
   getQueryState: (
     'queryKey,
     ReactQuery_Types.queryFilter<'queryKey>,
