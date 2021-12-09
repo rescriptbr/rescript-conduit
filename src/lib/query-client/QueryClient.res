@@ -13,6 +13,27 @@ let validateRequestError = response => {
   }
 }
 
+let delete = (~url) => {
+  open Promise
+
+  Storage.get(#token)->then(token => {
+    Fetch.fetch(
+      `${apiUrl}${url}`,
+      {
+        "method": "DELETE",
+        "headers": {
+          "Authorization": switch token {
+          | Some(token) => `Token ${token}`
+          | None => ""
+          },
+        },
+      },
+    )
+    ->then(validateRequestError)
+    ->then(response => Fetch.Response.json(response))
+  })
+}
+
 let post = (~url, body) => {
   open Promise
 
