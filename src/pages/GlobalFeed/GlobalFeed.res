@@ -35,7 +35,7 @@ let make = () => {
                 updatedAt=article.updatedAt
                 author=article.author
                 favorited=article.favorited
-                onFavorite={_ => favoriteArticle(article.slug)}
+                onFavorite={_ => favoriteArticle(article.favorited, article.slug)}
               />
             })}
             <Box display=[xs(#flex)] justifyContent=[xs(#"flex-end")]>
