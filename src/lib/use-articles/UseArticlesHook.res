@@ -47,14 +47,8 @@ let handleFetch = params => {
   QueryClient.get(~url=`/articles?${params}`)->thenResolve(apiResponse_decode)
 }
 
-let handleFavorite = (slug: string) =>
-  QueryClient.post(~url=`/articles/${slug}/favorite`, None)
-  //
-  ->Promise.thenResolve(a => {
-    Js.log(a)
-  })
-
 let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => {
+  let queryClient = ReactQuery.useQueryClient()
   let (pagination, handlePageChange) = Pagination.usePagination(~limit, ~offset, ())
 
   let params = Qs.stringify({
@@ -74,19 +68,59 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => 
     ),
   )
 
-  let onFavoriteSuccess = (_, _, _) => {
+  let onFavoriteSuccess = () => {
     fetchResult.refetch({
       throwOnError: false,
       cancelRefetch: false,
-    })
+    })->ignore
   }
 
-  let {mutate} = useMutation(
-    mutationOptions(~mutationKey=``, ~onSuccess=onFavoriteSuccess, ~mutationFn=handleFavorite, ()),
+  let (favoriteMutation, unfavoriteMutation) = FavoriteArticleHook.useFavorite(
+    ~onMutate=slug => {
+      let maybeArticles: Belt.Result.t<apiResponse, string> = queryClient.getQueryData(.
+        `articles:${params}`,
+      )
+
+      Js.log(
+        switch maybeArticles {
+        | Error(_) => ()
+        | Ok(response) => Js.log(response)
+        },
+      )
+      /* switch maybeArticles { */
+      /* | None => Js.log(`None`) */
+      /* | Some(response) => */
+      /* switch response { */
+      /* | None => Js.log(`None`) */
+      /* | Some(response2) => Js.log(Obj.magic(response2)["_0"]) */
+      /* } */
+      /* } */
+
+      /* let updatedArticles = maybeArticles->Belt.Option.map(response => { */
+      /* response.articles->Js.Array2.map(article => */
+      /* switch article.slug === slug { */
+      /* | false => article */
+      /* | true => {...article, favorited: !article.favorited} */
+      /* } */
+      /* ) */
+      /* }) */
+      /* Js.log(updatedArticles) */
+      onFavoriteSuccess()
+      Promise.resolve(`Result...`)
+    },
+    ~onError=(_, _, maybeContext) => {
+      Js.log(maybeContext)
+
+      Promise.resolve()
+    },
   )
 
-  let favoriteArticle = (slug: string) => {
-    mutate(. slug, None)
+  let toggleFavorite = (favorited: bool, slug: string) => {
+    switch favorited {
+    | false => favoriteMutation(slug)
+    | true => unfavoriteMutation(slug)
+    }
+    ()
   }
 
   let response = switch fetchResult {
@@ -98,5 +132,5 @@ let useArticles = (~author=?, ~tag=?, ~favorited=?, ~limit=5, ~offset=0, ()) => 
   | _ => Empty
   }
 
-  (response, pagination, handlePageChange, favoriteArticle)
+  (response, pagination, handlePageChange, toggleFavorite)
 }
