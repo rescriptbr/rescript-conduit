@@ -20,29 +20,35 @@ type mutateParams<'mutationVariables, 'mutationData, 'mutationError, 'unknown> =
 }
 
 @deriving(abstract)
-type mutationOptions<'mutationVariables, 'mutationData, 'mutationError, 'unknown> = {
-  mutationKey: string,
+type mutationOptions<
+  'mutationVariables,
+  'mutationData,
+  'mutationError,
+  'mutationContext,
+  'unknown,
+> = {
+  @optional mutationKey: string,
   mutationFn: 'mutationVariables => Js.Promise.t<'mutationData>,
-  @optional onMutate: 'mutationVariables => Js.Promise.t<mutationContext>,
+  @optional onMutate: 'mutationVariables => Js.Promise.t<'mutationContext>,
   @optional
   onSuccess: (
     'mutationData,
     'mutationVariables,
-    Js.Nullable.t<mutationContext>,
-  ) => Js.Promise.t<'unknown>,
+    Js.Nullable.t<'mutationContext>,
+  ) => Js.Promise.t<unit>,
   @optional
   onError: (
     'mutationError,
     'mutationVariables,
-    Js.Nullable.t<mutationContext>,
-  ) => Js.Promise.t<'unknown>,
+    Js.Nullable.t<'mutationContext>,
+  ) => Js.Promise.t<unit>,
   @optional
   onSettled: (
     'mutationData,
     'mutationError,
     'mutationVariables,
     Js.Nullable.t<mutationContext>,
-  ) => Js.Promise.t<'unknown>,
+  ) => Js.Promise.t<unit>,
   @optional retry: ReactQuery_Types.retryValue<'mutationError>,
   @optional retryDelay: ReactQuery_Types.retryDelayValue<'mutationError>,
   @optional useErrorBoundary: bool,
@@ -72,5 +78,6 @@ external useMutation: mutationOptions<
   'mutationVariables,
   'mutationData,
   'mutationError,
+  'mutationContext,
   'unknown,
 > => mutationResult<'mutationVariables, 'mutationData, 'mutationError, 'unknown> = "useMutation"
