@@ -20,11 +20,13 @@ module Main = {
 let make = () => {
   let route = Router.useRouter()
 
-  <ReactQuery.Provider client={queryClient}>
-    {switch route {
-    | Signin => <Signin />
-    | Signup => <Signup />
-    | _ => <Main />
-    }}
-  </ReactQuery.Provider>
+  <UseAuthHook.Provider>
+    <ReactQuery.Provider client={queryClient}>
+      {switch route {
+      | Signin => <Signin />
+      | Signup => <Signup />
+      | _ => <Main />
+      }}
+    </ReactQuery.Provider>
+  </UseAuthHook.Provider>
 }

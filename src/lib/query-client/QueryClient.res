@@ -4,7 +4,10 @@ let apiUrl = "https://conduit-api-fp.herokuapp.com/api"
 
 let validateRequestError = response => {
   switch response->Fetch.Response.status {
-  | 401 => LocalForage.clear()->ignore
+  | 401 => {
+      UseAuthHook.emitter->Mitt.emit(UseAuthHook.unauthorizedEvent)
+      LocalForage.clear()->ignore
+    }
   | _ => ()
   }
   switch response->Fetch.Response.ok {
