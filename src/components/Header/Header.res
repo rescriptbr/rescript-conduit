@@ -17,7 +17,7 @@ module Styles = {
 let make = () => {
   let result = UseMeHook.useMe()
 
-  <Box tag=#header className=Styles.header p=[xs(4), md(8)]>
+  <Box tag=#header className=Styles.header py=[xs(4), md(3)] px=[xs(4), md(8)]>
     <Grid justifyContent=[xs(#"space-between")]>
       <Box display=[xs(#flex)] alignItems=[xs(#center)] maxW=[xs(15.0->#rem)]>
         <FramerMotion.Element initial={"opacity": 0, "x": -50} animate={"opacity": 1, "x": 0}>

@@ -1,19 +1,28 @@
 open Render
 open AncestorConduit
 
-module FavoriteButton = {
-  let button = Emotion.css({
-    "background": "none",
-    "border": "none",
-    "cursor": "pointer",
-  })
+module Styles = {
+  let button = (~isLoggedIn) =>
+    Emotion.css({
+      "background": "none",
+      "border": "none",
+      "cursor": isLoggedIn ? "pointer" : "unset",
+    })
+}
 
+module FavoriteButton = {
   @react.component
   let make = (~count, ~favorited, ~onClick) => {
+    let {status} = UseAuthHook.useAuth()
+
     <Box
       tag=#button
-      onClick
-      className=button
+      onClick={evt =>
+        switch status {
+        | LoggedIn => onClick(evt)
+        | _ => ()
+        }}
+      className={Styles.button(~isLoggedIn=status === LoggedIn)}
       right=[xs(3.2->#rem)]
       top=[xs(3.2->#rem)]
       position=[xs(#absolute)]
