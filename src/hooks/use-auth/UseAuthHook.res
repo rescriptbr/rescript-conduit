@@ -1,9 +1,12 @@
 open ReScriptToolkit
 
 type status = LoggedIn | Checking | LoggedOut
-type contextValue = {status: status}
-
-let context = React.createContext({status: Checking})
+type contextValue = {status: status, setStatus: (status => status) => unit}
+type hookResult = {status: status, setToken: string => unit}
+let context = React.createContext({
+  status: Checking,
+  setStatus: _ => (),
+})
 let provider = React.Context.provider(context)
 
 let unauthorizedEvent = "UNAUTHORIZED"
@@ -35,10 +38,34 @@ module Provider = {
       provider,
       {
         "children": children,
-        "value": {status: status},
+        "value": {status: status, setStatus: setStatus},
       },
     )
   }
 }
 
-let useAuth = () => React.useContext(context)
+let useAuth = (~onLoggedIn=?, ()) => {
+  let {status, setStatus} = React.useContext(context)
+
+  let setToken = token => {
+    open Promise
+
+    Storage.set(#token, token)
+    ->then(_ => {
+      setStatus(_ => LoggedIn)
+      resolve()
+    })
+    ->ignore
+  }
+
+  React.useEffect1(() => {
+    switch (onLoggedIn, status) {
+    | (Some(cb), LoggedIn) => cb()
+    | (_, _) => ()
+    }
+
+    None
+  }, [status])
+
+  {status: status, setToken: setToken}
+}
