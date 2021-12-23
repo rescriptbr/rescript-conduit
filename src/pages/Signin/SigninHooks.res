@@ -21,19 +21,11 @@ let handleFetch = (payload: signinPayload) => {
 }
 
 let useSignin = () => {
+  let auth = UseAuthHook.useAuth(~onLoggedIn=() => Router.push(Home), ())
   let (error, setError) = React.useState(_ => None)
   let handleSuccess = (result, _, _) => {
-    open Promise
-
     switch result {
-    | Ok(response) =>
-      Storage.set(#token, response.user.token)
-      ->then(_ => {
-        Router.push(Home)
-        resolve()
-      })
-      ->ignore
-
+    | Ok(response) => auth.setToken(response.user.token)
     | Error(_) => setError(_ => Some(UnexpectedError))
     }
 
